@@ -10,11 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110209130749) do
+ActiveRecord::Schema.define(:version => 20110209135055) do
 
   create_table "receipts", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "img_orig_file_name"
+    t.string   "img_orig_content_type"
+    t.integer  "img_orig_file_size"
+    t.datetime "img_orig_updated_at"
   end
 
 end
