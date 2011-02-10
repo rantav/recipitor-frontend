@@ -51,5 +51,5 @@ RecipitorFrontend::Application.configure do
   # Paperclip environment specific configuration
   #
   PAPERCLIP_STORAGE_MECHANISM = :s3
-  PAPERCLIP_PATH = ":attachment/:id/:style/:basename.:extension"
+  PAPERCLIP_PATH = ":attachment/:uuid/:style/:basename.:extension"
 end
