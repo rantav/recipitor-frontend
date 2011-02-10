@@ -1,3 +1,4 @@
-access_key_id: AKIAJ6SMUXO3FI5P6VMA
-secret_access_key: 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
-bucket: recipitor_receipts_prod
+production:
+  access_key_id: AKIAJ6SMUXO3FI5P6VMA
+  secret_access_key: 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
+  bucket: recipitor_receipts_prod
