@@ -47,5 +47,9 @@ RecipitorFrontend::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  #
+  # Paperclip environment specific configuration
+  #
   PAPERCLIP_STORAGE_MECHANISM = :s3
+  PAPERCLIP_PATH = ":attachment/:id/:style/:basename.:extension"
 end

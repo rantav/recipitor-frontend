@@ -23,6 +23,10 @@ RecipitorFrontend::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
+  #
+  # Paperclip environment specific configuration
+  #
   PAPERCLIP_STORAGE_MECHANISM = :filesystem
+  PAPERCLIP_PATH = ":rails_root/public/system/:attachment/:id/:style/:filename"
 end
 

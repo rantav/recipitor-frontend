@@ -33,5 +33,9 @@ RecipitorFrontend::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
   
+  #
+  # Paperclip environment specific configuration
+  #
   PAPERCLIP_STORAGE_MECHANISM = :filesystem
+  PAPERCLIP_PATH = ":rails_root/public/system/:attachment/:id/:style/:filename"
 end
