@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Description</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +10,7 @@
 
 <% @receipts.each do |receipt| %>
   <tr>
+    <td><%= receipt.description %></td>
     <td><%= link_to 'Show', receipt %></td>
     <td><%= link_to 'Edit', edit_receipt_path(receipt) %></td>
     <td><%= link_to 'Destroy', receipt, :confirm => 'Are you sure?', :method => :delete %></td>

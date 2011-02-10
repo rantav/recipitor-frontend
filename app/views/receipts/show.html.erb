@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Description:</b>
+  <%= @receipt.description %>
+</p>
 
 <%= link_to 'Edit', edit_receipt_path(@receipt) %> |
 <%= link_to 'Back', receipts_path %>
