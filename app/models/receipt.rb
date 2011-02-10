@@ -38,4 +38,5 @@ class Receipt < ActiveRecord::Base
     end
   end
 
+
 end
