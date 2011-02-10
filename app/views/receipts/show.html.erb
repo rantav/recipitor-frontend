@@ -4,6 +4,10 @@
   <b>Description:</b>
   <%= @receipt.description %>
 </p>
+<p>
+  <b>img:</b>
+  <%= image_tag @receipt.img.url %>
+</p>
 
 <%= link_to 'Edit', edit_receipt_path(@receipt) %> |
 <%= link_to 'Back', receipts_path %>

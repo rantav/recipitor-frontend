@@ -1,4 +1,4 @@
-<%= form_for(@receipt) do |f| %>
+<%= form_for(@receipt, :html => { :multipart => true }) do |f| %>
   <% if @receipt.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
@@ -14,6 +14,11 @@
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :img %><br />
+    <%= f.file_field :img %>
+    <%= image_tag @receipt.img.url %>
   </div>
 
   <div class="actions">
