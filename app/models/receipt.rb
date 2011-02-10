@@ -1,6 +1,6 @@
 class Receipt < ActiveRecord::Base
   has_attached_file :img, 
-    :styles => { :medium => "300x300>", :thumb => "100x100#" },
+    :styles => { :thumb => "100x100#" },
     :storage => PAPERCLIP_STORAGE_MECHANISM,
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml"
     #:path => ":attachment/:id/:style/:basename.:extension"
