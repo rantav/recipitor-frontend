@@ -3,6 +3,8 @@ require 'test_helper'
 class ReceiptsControllerTest < ActionController::TestCase
   setup do
     @receipt = receipts(:one)
+    img = fixture_file_upload('files/receipt0.gif', 'image/gif')
+    @receipt.attributes = @receipt.attributes.merge({:img => img})
   end
 
   test "should get index" do
