@@ -6,7 +6,10 @@ gem 'rails', '3.0.4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+
+# paperclip and s3 storage
 gem 'paperclip'
+gem 'aws-s3', :require => 'aws/s3'
 
 # Use unicorn as the web server
 # gem 'unicorn'
