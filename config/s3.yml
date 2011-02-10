@@ -1,4 +1,4 @@
 production:
-  access_key_id: AKIAJ6SMUXO3FI5P6VMA
-  secret_access_key: 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
+  access_key_id: <%= ENV['S3_ACCESS_KEY'] %>
+  secret_access_key: <%= ENV['S3_SECRET_KEY'] %>
   bucket: recipitor_receipts_prod
