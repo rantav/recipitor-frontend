@@ -56,4 +56,6 @@ if you wish to see server log in the console use
 $ ruby script/rails server
 
 
-
+Run Tests
+=========
+$ rake test
