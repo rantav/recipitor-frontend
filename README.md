@@ -102,9 +102,7 @@ Then
 ...Then run the code:
 $ rake test # to debug tests
 $ rails server # to debug a server
-=======
 Browse http://localhost:3000
->>>>>>> trobleshooting
 
 Troubleshooting
 ===============
