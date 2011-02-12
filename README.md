@@ -104,6 +104,7 @@ $ rake test # to debug tests
 $ rails server # to debug a server
 Browse http://localhost:3000
 
+
 Troubleshooting
 ===============
 Validate gems are installed using
