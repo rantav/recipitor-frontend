@@ -49,7 +49,10 @@ $ rake server
 Browse 
 * http://localhost:3000 for the static html
 * http://localhost:3000/receipts for the application main page
+<<<<<<< HEAD
 
+=======
+>>>>>>> Troubleshooting and how to run tests
 
 Troubleshooting
 ===============
