@@ -156,3 +156,18 @@ Then
 $ rake test # to debug tests
 $ rails server # to debug a server
 
+Browse 
+* http://localhost:3000 for the static html
+* http://localhost:3000/receipts for the application main page
+
+Troubleshooting
+===============
+Validate gems are installed using
+$ bundle check
+if you wish to see server log in the console use
+$ ruby script/rails server
+
+
+Run Tests
+=========
+$ rake test
