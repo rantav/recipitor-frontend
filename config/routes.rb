@@ -1,7 +1,7 @@
 RecipitorFrontend::Application.routes.draw do
   resources :receipts
 
-  match 'rcpt/:id/:style/:filename' => 'receipts#view'
+  match 'rcpt/:id/:style/:basename.:extension' => 'receipts#view'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
