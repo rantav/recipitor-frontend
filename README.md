@@ -147,4 +147,12 @@ Next, place some breakpoint in your code. where you want to break simply type "d
   end
 
 
-Then run the code
+Next, Uncomment this line at Gemfile
+# gem 'ruby-debug19', :require => 'ruby-debug'
+Then
+ $ bundle install
+
+...Then run the code:
+$ rake test # to debug tests
+$ rails server # to debug a server
+
