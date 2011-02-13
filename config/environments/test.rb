@@ -38,4 +38,5 @@ RecipitorFrontend::Application.configure do
   #
   PAPERCLIP_STORAGE_MECHANISM = :filesystem
   PAPERCLIP_PATH = ":rails_root/public/system/:attachment/:id/:style/:filename"
+  PAPERCLIP_URL = "/system/:attachment/:id/:style/:filename"
 end

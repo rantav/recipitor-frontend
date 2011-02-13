@@ -65,3 +65,36 @@ $ ruby script/rails server
 Run Tests
 =========
 $ rake test
+
+Debugging
+=========
+Debugging with ruby 1.9.3 and rails 3.0.x is not rully functioning on all systems.
+Usually what you need to do is install the following:
+ $ sudo gem install ruby-debug
+
+To test that it worked:
+
+ $ rdebug --version
+ ruby-debug 0.11
+
+For me, that wasn't enough so I followed the instructions at http://dirk.net/2010/04/17/ruby-debug-with-ruby-19x-and-rails-3-on-rvm/
+Hence:
+ # Replace the path with your rvm install path of the current ruby you're using.
+ $ gem install ruby-debug19 -- -with-ruby-include=/Users/ran/.rvm/src/ruby-1.9.2-p136
+ # and optionally:
+ $ gem install  ruby-debug-ide19  -- -with-ruby-include=/Users/ran/.rvm/src/ruby-1.9.2-p136
+ $ bundle install # this will run the line "gem 'ruby-debug19', :require => 'ruby-debug'" from this file
+
+Now try again
+ $ rdebug --version
+
+Next, place some breakpoint in your code. where you want to break simply type "debugger" as in:
+
+   def img_url(style = nil, include_updated_timestamp = true)
+     debugger
+     url = Paperclip::Interpolations.interpolate('/rcpt/:id/:style/:filename', img, style || img.default_style)
+     include_updated_timestamp && img.updated_at ? [url, img.updated_at].compact.join(url.include?("?") ? "&" : "?") : url
+  end
+
+
+Then run the code
