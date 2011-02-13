@@ -1,0 +1,5 @@
+Configure a missing-image image
+Get rid of that img_orig in the database
+Add userim and authentication for images at app/controllers/receipts_controller.rb:view
+Rename the bucket to recipitor
+Fix: return "TODO - NOT FOUND"
