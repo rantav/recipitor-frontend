@@ -15,11 +15,13 @@
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>
-  <div class="field">
-    <%= f.label :img %><br />
-    <%= f.file_field :img %>
-    <%= image_tag @receipt.img.url %>
-  </div>
+  <% unless (@receipt.img.url.nil? || @receipt.img.url.end_with?("missing.png")) %>
+    <div class="field">
+      <%= f.label :img %><br />
+      <%= f.file_field :img %>
+      <%= image_tag @receipt.img.url %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
