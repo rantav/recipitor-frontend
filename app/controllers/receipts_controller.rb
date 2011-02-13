@@ -80,4 +80,16 @@ class ReceiptsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def view
+    current_user = 'userit' ##TODO(ran): extract user from cookie
+    head(:not_found) and return if (receipt = Receipt.find_by_id(params[:id])).nil?
+    head(:forbidden) and return unless receipt.authorized?(current_user)
+
+    style = params[:style]
+    path = receipt.img.path(style)
+    head(:bad_request) and return unless params[:extension].to_s == File.extname(path).gsub(/^\.+/, '')
+
+    redirect_to(receipt.authenticated_url(style))
+  end
 end

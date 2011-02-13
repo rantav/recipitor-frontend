@@ -52,4 +52,5 @@ RecipitorFrontend::Application.configure do
   #
   PAPERCLIP_STORAGE_MECHANISM = :s3
   PAPERCLIP_PATH = ":attachment/:id/:style/:basename.:extension"
+  PAPERCLIP_URL = ":s3_domain_url"
 end
