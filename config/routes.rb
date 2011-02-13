@@ -1,7 +1,11 @@
 RecipitorFrontend::Application.routes.draw do
   resources :receipts
 
+<<<<<<< HEAD
   match 'rcpt/:id/:style/:basename.:extension' => 'receipts#view'
+=======
+  match 'rcpt/:id/:style/:filename' => 'receipts#view'
+>>>>>>> [#9754851] Implement images authorization
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
