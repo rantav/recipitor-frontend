@@ -49,10 +49,6 @@ $ rake server
 Browse 
 * http://localhost:3000 for the static html
 * http://localhost:3000/receipts for the application main page
-<<<<<<< HEAD
-
-=======
->>>>>>> Troubleshooting and how to run tests
 
 Troubleshooting
 ===============
@@ -101,6 +97,7 @@ Next, Uncomment this line at Gemfile
 # gem 'ruby-debug19', :require => 'ruby-debug'
 Then
  $ bundle install
+Then run the code
 
 ...Then run the code:
 $ rake test # to debug tests
