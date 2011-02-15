@@ -84,4 +84,3 @@ DEPENDENCIES
   paperclip
   rails (= 3.0.4)
   sqlite3-ruby
-  sqlite3
