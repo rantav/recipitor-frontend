@@ -1,4 +1,6 @@
 RecipitorFrontend::Application.routes.draw do
+  resources :users
+
   resources :receipts
 
   match 'rcpt/:id/:style/:basename.:extension' => 'receipts#view'
