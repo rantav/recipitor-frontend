@@ -1,11 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<% if @receipt.user %>
+  <p>User: <%= link_to @receipt.user.username, @receipt.user %></p>
+<% end %>
 <p>
-  <b>Description:</b>
-  <%= @receipt.description %>
+  Description: <%= @receipt.description %>
 </p>
 <p>
-  <b>img:</b>
   <%= image_tag @receipt.img_url %>
 </p>
 

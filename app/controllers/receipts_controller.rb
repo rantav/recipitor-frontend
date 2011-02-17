@@ -21,17 +21,6 @@ class ReceiptsController < ApplicationController
     end
   end
 
-  # GET /receipts/new
-  # GET /receipts/new.xml
-  def new
-    @receipt = Receipt.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @receipt }
-    end
-  end
-
   # GET /receipts/1/edit
   def edit
     @receipt = Receipt.find(params[:id])
@@ -40,17 +29,9 @@ class ReceiptsController < ApplicationController
   # POST /receipts
   # POST /receipts.xml
   def create
-    @receipt = Receipt.new(params[:receipt])
-
-    respond_to do |format|
-      if @receipt.save
-        format.html { redirect_to(@receipt, :notice => 'Receipt was successfully created.') }
-        format.xml  { render :xml => @receipt, :status => :created, :location => @receipt }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @receipt.errors, :status => :unprocessable_entity }
-      end
-    end
+    @user = User.find(params[:user_id])
+    @receipt = @user.receipts.create(params[:receipt])
+    redirect_to user_path(@user)
   end
 
   # PUT /receipts/1

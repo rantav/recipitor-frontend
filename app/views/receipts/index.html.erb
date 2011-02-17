@@ -2,8 +2,9 @@
 
 <table>
   <tr>
+    <th>User</th>
     <th>Description</th>
-    <th>img</th>
+    <th>Img</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,6 +12,13 @@
 
 <% @receipts.each do |receipt| %>
   <tr>
+    <td>
+      <% if receipt.user %>
+        <%= link_to receipt.user.username, receipt.user %>
+      <% else %>
+        no one
+      <% end %>
+    </td>
     <td><%= receipt.description %></td>
     <td><%= image_tag receipt.img_url(:thumb) %></td>
     <td><%= link_to 'Show', receipt %></td>
@@ -20,6 +28,3 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Receipt', new_receipt_path %>

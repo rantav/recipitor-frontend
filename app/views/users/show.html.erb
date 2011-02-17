@@ -15,6 +15,31 @@
   <%= @user.email %>
 </p>
 
+<h2><%= @user.username %>'s receipts:</h2>
+<% @user.receipts.each do |r| %>
+  <p>
+  <%= r.description %>
+  <%= link_to 'Delete Receipt', [r.user, r], :method => :delete %>
+  </p>
+  <p>
+    <%= image_tag r.img_url %>
+  </p>
+<% end %>
+
+<h2>Add a receipt for <%= @user.username %>:</h2>
+<%= form_for([@user, @user.receipts.build], :html => {:multipart => true}) do |f| %>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :img %><br />
+    <%= f.file_field :img %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
