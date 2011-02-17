@@ -22,7 +22,7 @@
   <%= link_to 'Delete Receipt', [r.user, r], :method => :delete %>
   </p>
   <p>
-    <%= image_tag r.img_url %>
+    <%= image_tag r.img_url(:thumb) %>
   </p>
 <% end %>
 
