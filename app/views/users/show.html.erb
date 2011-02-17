@@ -22,11 +22,11 @@
   <%= link_to 'Delete Receipt', [r.user, r], :method => :delete %>
   </p>
   <p>
-    <%= image_tag r.img_url(:thumb) %>
+    <%= link_to image_tag(r.img_url(:thumb)), edit_receipt_path(r)  %>
   </p>
 <% end %>
 
-<h2>Add a receipt for <%= @user.username %>:</h2>
+<h2>Add another receipt for <%= @user.username %>:</h2>
 <%= form_for([@user, @user.receipts.build], :html => {:multipart => true}) do |f| %>
   <div class="field">
     <%= f.label :description %><br />
