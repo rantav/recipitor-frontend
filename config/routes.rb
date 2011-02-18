@@ -6,7 +6,7 @@ RecipitorFrontend::Application.routes.draw do
   resources :receipts
 
   match 'rcpt/:id/:style/:basename.:extension' => 'receipts#view'
-
+  match '/emails' => 'emails#create'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

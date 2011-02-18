@@ -1,0 +1,5 @@
+<% if @user.nil? %>
+	  <h2>could not find user with email [<%= params[:user_email] %>]</h2>
+<% else %>
+  <h2>email was handled successfully. reciept ID is <%= @receipt.id %></h2>
+<% end %>
