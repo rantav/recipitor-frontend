@@ -1,8 +1,15 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+
+  test "new user has no receipts" do
+    user = User.new
+    assert_empty user.receipts
+  end
+  
+  test "new user can add a receipt" do
+    user = User.create
+    user.receipts.create
+    assert_not_empty user.receipts
   end
 end
