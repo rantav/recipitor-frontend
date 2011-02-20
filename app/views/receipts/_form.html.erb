@@ -1,5 +1,5 @@
 <% if @receipt.user %>
-  <p> User: <%= link_to @receipt.user.username, @receipt.user %> </p>
+  <p> User: <%= link_to @receipt.user.email, @receipt.user %> </p>
 <%end%>
 <%= form_for(@receipt, :html => { :multipart => true }) do |f| %>
   <% if @receipt.errors.any? %>

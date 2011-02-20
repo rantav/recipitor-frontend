@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <% if @receipt.user %>
-  <p>User: <%= link_to @receipt.user.username, @receipt.user %></p>
+  <p>User: <%= link_to @receipt.user.email, @receipt.user %></p>
 <% end %>
 <p>
   Description: <%= @receipt.description %>

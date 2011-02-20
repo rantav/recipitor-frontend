@@ -14,7 +14,7 @@
   <tr>
     <td>
       <% if receipt.user %>
-        <%= link_to receipt.user.username, receipt.user %>
+        <%= link_to receipt.user.email, receipt.user %>
       <% else %>
         no one
       <% end %>
