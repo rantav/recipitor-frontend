@@ -20,6 +20,9 @@ end
 gem 'paperclip'
 gem 'aws-s3', :require => 'aws/s3'
 
+# User management
+gem 'devise'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
