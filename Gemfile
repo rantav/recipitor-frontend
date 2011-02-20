@@ -23,6 +23,13 @@ gem 'aws-s3', :require => 'aws/s3'
 # User management
 gem 'devise'
 
+group :development, :test do
+  gem 'haml-rails'
+  gem 'hpricot'
+  gem 'ruby_parser'
+  gem 'web-app-theme'
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
