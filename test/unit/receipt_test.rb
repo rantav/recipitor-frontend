@@ -41,11 +41,36 @@ class ReceiptTest < ActiveSupport::TestCase
     receipt = Receipt.create(:img => fixture_file_upload('files/receipt6.txt', 'text/plain'))
     assert !receipt.save
   end
-
-
+  
   ## This test runs for too long... (57 seconds...)
 #  test "attachment too big should be rejected" do
 #    receipt = Receipt.create(:img => fixture_file_upload('files/large_img.jpg', 'image/jpg'))
 #    assert !receipt.save
 #  end
+
+  test "authorization always passes" do
+    receipt = Receipt.new
+    user = User.new
+    assert receipt.authorized?(user)
+  end
+
+  test "building default img_url" do
+    receipt = Receipt.create(:img => fixture_file_upload('files/receipt0.gif', 'image/gif'))
+    assert_match /\/rcpt\/\d+\/original\/receipt0.gif\?\d+/, receipt.img_url
+  end
+
+  test "building not-found img_url (still TODO)" do
+    receipt = Receipt.new
+    assert_equal "TODO - NOT FOUND", receipt.img_url
+  end
+
+  test "building img authenticated_url on localhost (not reall authenticated, but used for local dev)" do
+    receipt = Receipt.create(:img => fixture_file_upload('files/receipt0.gif', 'image/gif'))
+    assert_match /\/system\/imgs\/\d+\/original\/receipt0.gif\?\d+/, receipt.authenticated_url
+  end
+
+  test "building img authenticated_url on s3" do
+    #TODO(ran): Think about how to test this...
+  end
+  
 end
