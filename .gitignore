@@ -6,3 +6,4 @@ public/system/
 .*.swp
 .project
 vendor
+**/.DS_Store
