@@ -1,21 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Username:</b>
-  <%= @user.username %>
-</p>
-
-<p>
-  <b>Password:</b>
-  <%= @user.password %>
-</p>
-
-<p>
   <b>Email:</b>
   <%= @user.email %>
 </p>
 
-<h2><%= @user.username %>'s receipts:</h2>
+<h2>receipts:</h2>
 <% @user.receipts.each do |r| %>
   <p>
   <%= r.description %>
@@ -26,7 +16,7 @@
   </p>
 <% end %>
 
-<h2>Add another receipt for <%= @user.username %>:</h2>
+<h2>Add another receipt:</h2>
 <%= form_for([@user, @user.receipts.build], :html => {:multipart => true}) do |f| %>
   <div class="field">
     <%= f.label :description %><br />

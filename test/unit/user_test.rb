@@ -8,7 +8,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "new user can add a receipt" do
-    user = User.create
+    user = users(:one)
     user.receipts.create
     assert_not_empty user.receipts
   end

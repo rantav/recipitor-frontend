@@ -1,11 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  username: BenTen
-  password: 2good
   email: b3n@10.io
 
-two:
-  username: MyString
-  password: MyString
-  email: MyString
+
