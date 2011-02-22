@@ -65,6 +65,18 @@
         = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_user_path(@user), :class => "button"
         = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), user_path(@user), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
 
+-if not @user.receipts.empty?
+  .block
+    .content
+      .inner
+        %h2 receipts
+        - @user.receipts.each do |r|
+          %p
+            = r.description
+            = link_to 'Delete Receipt', [r.user, r], :method => :delete 
+          %p
+            = image_tag(r.img_url(:thumb))
+
 .block
   .content
     .inner
@@ -78,16 +90,5 @@
           = f.file_field :img
         .actions
           = f.submit
-
-.block
-  .content
-    .inner
-      %h2 receipts
-      - @user.receipts.each do |r|
-        %p
-          = r.description
-          = link_to 'Delete Receipt', [r.user, r], :method => :delete 
-        %p
-          = image_tag(r.img_url(:thumb))
 
 - content_for :sidebar, render(:partial => 'sidebar')
