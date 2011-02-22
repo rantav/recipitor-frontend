@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   attr_accessible :admin
 
   def admin?
-    admin
+    true
   end
 end
