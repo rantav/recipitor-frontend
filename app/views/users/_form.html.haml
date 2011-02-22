@@ -3,6 +3,10 @@
   = f.text_field :email, :class => 'text_field'
   %span.description Ex: a simple text
 .group
+  = f.label :admin, t("activerecord.attributes.user.admin", :default => "Admin"), :class => :label |
+  = f.check_box :admin, :class => 'check_box'
+  %span.description Is this user an administrator?
+.group
   = f.label :encrypted_password, t("activerecord.attributes.user.encrypted_password", :default => "Encrypted password"), :class => :label
   = f.text_field :encrypted_password, :class => 'text_field'
   %span.description Ex: a simple text

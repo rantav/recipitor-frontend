@@ -13,6 +13,11 @@
         = @user.email
       %p
         %b
+          = t("activerecord.attributes.user.admin", :default => t("activerecord.labels.admin", :default => "Admin"))
+          \:
+        = @user.admin
+      %p
+        %b
           = t("activerecord.attributes.user.encrypted_password", :default => t("activerecord.labels.encrypted_password", :default => "Encrypted password"))
           \:
         = @user.encrypted_password

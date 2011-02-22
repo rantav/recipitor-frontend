@@ -14,15 +14,14 @@
           %th
             = t("activerecord.attributes.user.email", :default => t("activerecord.labels.email", :default => "Email"))
           %th= t("web-app-theme.created_at", :default => "Created at")
+          %th.first Admin
           %th.last &nbsp;
         - @users.each do |user|
           %tr{:class => cycle("odd", "even")}
-            %td
-              = user.id
-            %td
-              = link_to user.email, user_path(user)
-            %td
-              = user.created_at
+            %td= user.id
+            %td= link_to user.email, user_path(user)
+            %td= user.created_at
+            %td= user.admin
             %td.last
               = link_to "#{t("web-app-theme.show", :default => "Show")}", user_path(user)
               |
