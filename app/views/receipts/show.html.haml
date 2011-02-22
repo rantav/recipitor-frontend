@@ -9,8 +9,9 @@
         %b
         = image_tag @receipt.img_url
       %p
-        %b User:
-        = link_to @receipt.user.email, @receipt.user
+        -if @receipt.user
+          %b User:
+          = link_to @receipt.user.email, @receipt.user
       %p
         %b
           = t("activerecord.attributes.receipt.img_file_name", :default => t("activerecord.labels.img_file_name", :default => "Img file name"))

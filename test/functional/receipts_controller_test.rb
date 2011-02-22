@@ -5,8 +5,8 @@ class ReceiptsControllerTest < ActionController::TestCase
     @receipt = receipts(:one)
     img = fixture_file_upload('files/receipt0.gif', 'image/gif')
     @receipt.attributes = @receipt.attributes.merge({:img => img})
-    
     @user = users(:one)
+    @receipt.user = @user
   end
 
   test "should get index" do
@@ -14,11 +14,6 @@ class ReceiptsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:receipts)
   end
-
-#  test "should get new" do
-#    get :new
-#    assert_response :success
-#  end
 
   test "should create receipt" do
     assert_difference('Receipt.count') do
