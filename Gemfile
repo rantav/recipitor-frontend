@@ -23,7 +23,9 @@ gem 'aws-s3', :require => 'aws/s3'
 # User management
 gem 'devise'
 
+gem 'haml'
 gem 'haml-rails'
+gem 'will_paginate', '3.0.pre2'
 gem 'hpricot'
 gem 'ruby_parser'
 gem 'web-app-theme'

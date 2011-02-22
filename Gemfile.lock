@@ -92,6 +92,7 @@ GEM
     warden (1.0.3)
       rack (>= 1.0.0)
     web-app-theme (0.6.3)
+    will_paginate (3.0.pre2)
     xml-simple (1.0.14)
 
 PLATFORMS
@@ -101,6 +102,7 @@ PLATFORMS
 DEPENDENCIES
   aws-s3
   devise
+  haml
   haml-rails
   hpricot
   paperclip
@@ -108,3 +110,4 @@ DEPENDENCIES
   ruby_parser
   sqlite3-ruby
   web-app-theme
+  will_paginate (= 3.0.pre2)
