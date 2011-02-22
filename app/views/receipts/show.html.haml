@@ -1,0 +1,47 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "#{t("web-app-theme.list", :default => "List")}", receipts_path
+      %li.active= link_to "#{t("web-app-theme.show", :default => "Show")}", receipt_path
+  .content
+    .inner
+      %p
+        %b
+        = image_tag @receipt.img_url
+      %p
+        %b User:
+        = link_to @receipt.user.email, @receipt.user
+      %p
+        %b
+          = t("activerecord.attributes.receipt.img_file_name", :default => t("activerecord.labels.img_file_name", :default => "Img file name"))
+          \:
+        = @receipt.img_file_name
+      %p
+        %b
+          = t("activerecord.attributes.receipt.img_content_type", :default => t("activerecord.labels.img_content_type", :default => "Img content type"))
+          \:
+        = @receipt.img_content_type
+      %p
+        %b
+          = t("activerecord.attributes.receipt.img_file_size", :default => t("activerecord.labels.img_file_size", :default => "Img file size"))
+          \:
+        = @receipt.img_file_size
+      %p
+        %b
+          = t("activerecord.attributes.receipt.img_updated_at", :default => t("activerecord.labels.img_updated_at", :default => "Img updated at"))
+          \:
+        = @receipt.img_updated_at
+      %p
+        %b
+          = t("activerecord.attributes.receipt.description", :default => t("activerecord.labels.description", :default => "Description"))
+          \:
+        = @receipt.description
+      %p
+        %b
+          = t("activerecord.attributes.receipt.user_id", :default => t("activerecord.labels.user_id", :default => "User"))
+          \:
+        = @receipt.user_id
+      .wat-cf
+        = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_receipt_path(@receipt), :class => "button"
+        = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), receipt_path(@receipt), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+- content_for :sidebar, render(:partial => 'sidebar')

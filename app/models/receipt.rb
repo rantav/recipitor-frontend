@@ -3,7 +3,7 @@ class Receipt < ActiveRecord::Base
   belongs_to :user
   
   has_attached_file :img, 
-    :styles => {:thumb => "100x100#"},
+    :styles => {:thumb => "100x100"},
     :storage => PAPERCLIP_STORAGE_MECHANISM,
     :s3_credentials => Rails.root.join('config/s3.yml'),
     :s3_permissions => 'authenticated-read',

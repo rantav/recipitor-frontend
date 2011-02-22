@@ -2,7 +2,7 @@ class ReceiptsController < ApplicationController
   # GET /receipts
   # GET /receipts.xml
   def index
-    @receipts = Receipt.all
+    @receipts =  Receipt.paginate :page => params[:page], :per_page => 5
 
     respond_to do |format|
       format.html # index.html.erb
