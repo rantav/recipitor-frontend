@@ -22,6 +22,7 @@ gem 'aws-s3', :require => 'aws/s3'
 
 # User management
 gem 'devise'
+gem "cancan"
 
 gem 'haml'
 gem 'haml-rails'
