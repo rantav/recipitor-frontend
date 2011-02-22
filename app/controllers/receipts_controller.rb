@@ -1,4 +1,6 @@
 class ReceiptsController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /receipts
   # GET /receipts.xml
   def index

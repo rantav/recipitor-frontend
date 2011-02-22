@@ -7,6 +7,7 @@ class ReceiptsControllerTest < ActionController::TestCase
     @receipt.attributes = @receipt.attributes.merge({:img => img})
     @user = users(:one)
     @receipt.user = @user
+    sign_in User.first
   end
 
   test "should get index" do
