@@ -17,7 +17,7 @@
         - @receipts.each do |receipt|
           %tr{:class => cycle("odd", "even")}
             %td= receipt.id
-            %td= link_to image_tag(receipt.img.url(:thumb)), receipt_path(receipt)
+            %td= link_to image_tag(receipt.img_url(:thumb)), receipt_path(receipt)
             %td
               -if receipt.user 
                 =link_to receipt.user.email, receipt.user 
