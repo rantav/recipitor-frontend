@@ -40,6 +40,8 @@ GEM
     devise (1.1.7)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
+    devise_invitable (0.3.6)
+      devise (~> 1.1.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     haml (3.0.25)
@@ -104,6 +106,7 @@ DEPENDENCIES
   aws-s3
   cancan
   devise
+  devise_invitable (~> 0.3.4)
   haml
   haml-rails
   hpricot

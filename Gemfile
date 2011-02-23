@@ -22,8 +22,8 @@ gem 'aws-s3', :require => 'aws/s3'
 
 # User management
 gem 'devise'
-gem "cancan"
-
+gem 'cancan'
+gem 'devise_invitable', '~> 0.3.4'
 gem 'haml'
 gem 'haml-rails'
 gem 'will_paginate', '3.0.pre2'
