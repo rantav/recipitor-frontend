@@ -25,11 +25,11 @@ class EmailsController < ApplicationController
   def create
   	puts "EmailsController::create"
   	params.keys.each { |k| puts "[#{k}]==>[#{params[k]}]" if (k != :img )  }
-  	apikey = YAML.load_file("#{RAILS_ROOT}/config/upload.yml")[RAILS_ENV]["apikey"]
+  	apikey = ERB.new(YAML.load_file("#{RAILS_ROOT}/config/upload.yml")[RAILS_ENV]["apikey"]).result
   	puts "validating secret with #{apikey}"
 	if params["secret"].nil?
 		puts "secret does not exists"
-	elseif !(params["secret"].eql?("kabal0t_4_the_wor1d"))
+	elseif !(params["secret"].eql?(apikey))
 		puts "secret is incorrct"
 	else
 		@user = User.find_by_email(params[:user_email])
