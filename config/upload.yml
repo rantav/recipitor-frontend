@@ -1,0 +1,8 @@
+production:
+  apikey: <%= ENV['UPLOAD_API_KEY'] %>
+  
+development:
+  apikey: recipitor
+
+test:
+  apikey: recipitor

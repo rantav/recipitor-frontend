@@ -23,8 +23,10 @@ class EmailsController < ApplicationController
    # POST /receipts
   # POST /receipts.xml
   def create
-  	#puts "EmailsController::create"
-  	#params.keys.each { |k| puts "[#{k}]==>[#{params[k]}]" if (k != :img )  }
+  	puts "EmailsController::create"
+  	params.keys.each { |k| puts "[#{k}]==>[#{params[k]}]" if (k != :img )  }
+  	apikey = YAML.load_file("#{RAILS_ROOT}/config/upload.yml")[RAILS_ENV]["apikey"]
+  	puts "validating secret with #{apikey}"
 	if params["secret"].nil?
 		puts "secret does not exists"
 	elseif !(params["secret"].eql?("kabal0t_4_the_wor1d"))
