@@ -18,6 +18,16 @@
         = @user.admin
       %p
         %b
+          = t("activerecord.attributes.user.invitation_sent_at", :default => t("activerecord.labels.invitation_sent_at", :default => "Invitation sent at"))
+          \:
+        = @user.invitation_sent_at
+      %p
+        %b
+          = t("activerecord.attributes.user.invitation_token", :default => t("activerecord.labels.invitation_token", :default => "Invitation token"))
+          \:
+        = @user.invitation_token
+      %p
+        %b
           = t("activerecord.attributes.user.encrypted_password", :default => t("activerecord.labels.encrypted_password", :default => "Encrypted password"))
           \:
         = @user.encrypted_password

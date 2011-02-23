@@ -14,6 +14,7 @@
           %th
             = t("activerecord.attributes.user.email", :default => t("activerecord.labels.email", :default => "Email"))
           %th= t("web-app-theme.created_at", :default => "Created at")
+          %th.first Invitation Token
           %th.first Admin
           %th.last &nbsp;
         - @users.each do |user|
@@ -21,6 +22,12 @@
             %td= user.id
             %td= link_to user.email, user_path(user)
             %td= user.created_at
+            %td
+              - if user.invitation_token
+                = user.invitation_token
+                (since
+                = user.invitation_sent_at
+                )
             %td= user.admin
             %td.last
               = link_to "#{t("web-app-theme.show", :default => "Show")}", user_path(user)
