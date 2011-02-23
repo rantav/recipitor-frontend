@@ -25,7 +25,7 @@ class EmailsController < ApplicationController
   def create
   	puts "EmailsController::create"
   	params.keys.each { |k| puts "[#{k}]==>[#{params[k]}]" if (k != :img )  }
-	if params[:secret].nil? || params[:secret].eql?  "kabal0t_4_the_wor1d"
+	if params[:secret].nil? || params[:secret].eql?("kabal0t_4_the_wor1d")  
 		puts "secret is incorrct of does not exist"
 	else
 		@user = User.find_by_email(params[:user_email])
