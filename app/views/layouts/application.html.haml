@@ -12,12 +12,14 @@
           %a{:href => "/"} Recipitor
         #user-navigation
           %ul.wat-cf
-            %li
-              %a{:href => "#"}= t("web-app-theme.profile", :default => "Profile")
-            %li
-              %a{:href => "#"}= t("web-app-theme.settings", :default => "Settings")
-            %li
-              = link_to t("web-app-theme.logout", :default => "Logout"), destroy_user_session_path
+            -if user_signed_in?
+              %li
+                = link_to t("web-app-theme.logout", :default => "Logout"), '/logout'
+            -else
+              %li
+                = link_to t("web-app-theme.signup", :default => "Signup"), new_user_registration_path
+              %li
+                = link_to t("web-app-theme.login", :default => "Login"), '/login'
         #main-navigation
           %ul.wat-cf
             %li{ :class => (params[:controller] == "home" ? "first active" : "first") }

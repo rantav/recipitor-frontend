@@ -34,5 +34,9 @@ RecipitorFrontend::Application.configure do
   #PAPERCLIP_STORAGE_MECHANISM = :s3
   #PAPERCLIP_PATH = ":attachment/:id/:style/:filename"
   #PAPERCLIP_URL = ":s3_domain_url"
+  
+
+  # Devise configuration
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
 
