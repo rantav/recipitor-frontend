@@ -5,7 +5,13 @@ Net::SMTP.class_eval do
 	private
 	def do_start(helodomain, user, secret, authtype)
 		raise IOError, 'SMTP session already started' if @started
-		check_auth_args user, secret, authtype if user or secret
+                #check_auth_args user, secret, authtype if user or secret
+                # Added by http://blog.heroku.com/archives/2009/11/9/tech_sending_email_with_gmail/#comment-29954396
+                if RUBY_VERSION > "1.8.6"
+                  check_auth_args user, secret # for rails 1.8.7
+                else
+                  check_auth_args user, secret, authtype if user or secret # for rails 1.8.6
+                end
 
 		sock = timeout(@open_timeout) { TCPSocket.open(@address, @port) }
 		@socket = Net::InternetMessageIO.new(sock)
