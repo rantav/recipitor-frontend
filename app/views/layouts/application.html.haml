@@ -22,10 +22,12 @@
           %ul.wat-cf
             %li{ :class => (params[:controller] == "home" ? "first active" : "first") }
               = link_to "Home", root_path
-            %li{ :class => (params[:controller] == "users" ? "active" : nil) }
-              = link_to "Users", users_path
-            %li{ :class => (params[:controller] == "receipts" ? "active" : nil) }
-              = link_to "Receipts", receipts_path
+            -if can? :view, User
+              %li{ :class => (params[:controller] == "users" ? "active" : nil) }
+                = link_to "Users", users_path
+            -if can? :view, Receipt
+              %li{ :class => (params[:controller] == "receipts" ? "active" : nil) }
+                = link_to "Receipts", receipts_path
       #wrapper.wat-cf
         .flash
           - flash.each do |type, message|
