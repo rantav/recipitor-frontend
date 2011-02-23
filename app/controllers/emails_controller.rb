@@ -23,8 +23,8 @@ class EmailsController < ApplicationController
    # POST /receipts
   # POST /receipts.xml
   def create
-  	puts "EmailsController::create"
-  	params.keys.each { |k| puts "[#{k}]==>[#{params[k]}]" if (k != :img )  }
+  	#puts "EmailsController::create"
+  	#params.keys.each { |k| puts "[#{k}]==>[#{params[k]}]" if (k != :img )  }
 	if params["secret"].nil?
 		puts "secret does not exists"
 	else if !(params["secret"].eql?("kabal0t_4_the_wor1d"))
