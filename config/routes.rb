@@ -20,6 +20,11 @@ RecipitorFrontend::Application.routes.draw do
     end
     resources :receipts
   end
+  
+  #add url for non admin - will probabaly need a bettr name
+    match '/site/receipts' => 'receipts#mylist'
+  
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

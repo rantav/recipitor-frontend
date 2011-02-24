@@ -77,4 +77,25 @@ class ReceiptsController < ApplicationController
 
     redirect_to(receipt.authenticated_url(style))
   end
+
+
+
+  # display the users receipts
+  # GET /receipts
+  # GET /receipts.xml
+  def mylist
+	logger.debug "going to list all receipts for user #{current_user.email}"
+    # @receipts =  Receipt.paginate :page => params[:page], :per_page => 10
+    @user = current_user
+    #@receipts =  Receipt.paginate :page => params[:page], :per_page => 4
+    
+     @receipts =  Receipt.paginate :per_page => 4, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @receipts }
+    end
+  end
+  
+  
 end
