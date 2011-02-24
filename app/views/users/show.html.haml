@@ -96,6 +96,7 @@
   .content
     .inner
       %h2 Add another receipt
+      = render :partial => "upload_form"
       = form_for([@user, @user.receipts.build], :html => {:multipart => true}) do |f|
         .field
           = f.label :description 

@@ -1,0 +1,27 @@
+= form_for([@user, @user.receipts.build], :html => {:multipart => true, :id => "file_upload", :method => "post"}) do |f|
+  = f.file_field :img
+  %button Upload
+  #div Upload Receipts
+
+%table{ :id => "files" }
+
+:javascript
+  $(function () {
+    $('#file_upload').fileUploadUI({
+      uploadTable: $('#files'),
+      downloadTable: $('#files'),
+      buildUploadRow: function (files, index) {
+        return $('<tr><td>' + files[index].name + '<\/td>' +
+                 '<td class="file_upload_progress"><div><\/div><\/td>' +
+                 '<td class="file_upload_cancel">' +
+                 '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+                 '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+                 '<\/button><\/td><\/tr>');
+      },
+      buildDownloadRow: function (file) {
+        return $('<tr><td><img width="100px" height="100px" src="' + file.pic_path + '"/><\/td>' + 
+                     '<td><a href="' + file.pic_path  + '">' + file.name + '<\/a><\/td><\/tr>');
+      }
+    });
+  });
+

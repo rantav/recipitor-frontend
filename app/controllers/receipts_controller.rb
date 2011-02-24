@@ -34,7 +34,8 @@ class ReceiptsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @receipt = @user.receipts.create(params[:receipt])
-    redirect_to user_path(@user)
+    render :json => {:pic_path => @receipt.img_url, :name => @receipt.img_file_name}
+    #redirect_to user_path(@user) #TODO(ran): Use this redirect in some cases?
   end
 
   # PUT /receipts/1

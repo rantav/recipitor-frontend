@@ -21,7 +21,8 @@ class ReceiptsControllerTest < ActionController::TestCase
       post :create, :receipt => @receipt.attributes, :user_id => @user.id
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    assert_response :success
+    #assert_redirected_to user_path(assigns(:user))
   end
 
   test "should show receipt" do
