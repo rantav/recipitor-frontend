@@ -31,6 +31,8 @@ gem 'hpricot'
 gem 'ruby_parser'
 gem 'web-app-theme'
 
+gem 'jquery-rails', '>= 0.2.6'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
