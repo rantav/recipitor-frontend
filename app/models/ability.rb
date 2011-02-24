@@ -7,10 +7,9 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-    # non admin user can manage his Receipt
+    # non admin user can manage his Receipt 
 	  can :manage, Receipt, :user_id => user.id
-	  can :manage, User, :user_id => user.id
-
+	  can :manage, User, :id => user.id
     end
     #
     # The first argument to `can` is the action you are giving the user permission to do.
