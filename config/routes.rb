@@ -22,7 +22,7 @@ RecipitorFrontend::Application.routes.draw do
   end
   
   #add url for non admin - will probabaly need a bettr name
-    match '/site/receipts' => 'receipts#mylist'
+  match '/my/receipts' => 'receipts#mylist'
   
   
 
