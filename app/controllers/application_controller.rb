@@ -10,4 +10,8 @@ protected
   def authenticate_inviter!
     (current_user && current_user.admin?) || redirect_to(root_url, :alert => "Sorry, you can't invite new users just yet...")
   end
+  
+  def check_admin_ability
+    redirect_to root_path unless can? :admin, :all
+  end
 end

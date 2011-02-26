@@ -1,9 +1,9 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first= link_to "#{t("web-app-theme.list", :default => "List")}", users_path
-      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_user_path
-      %li.active= link_to "#{t("web-app-theme.show", :default => "Show")}", user_path
+      %li.first= link_to "#{t("web-app-theme.list", :default => "List")}", admin_users_path
+      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_admin_user_path
+      %li.active= link_to "#{t("web-app-theme.show", :default => "Show")}", admin_user_path
   .content
     .inner
       %p
@@ -77,8 +77,8 @@
           \:
         = @user.last_sign_in_ip
       .wat-cf
-        = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_user_path(@user), :class => "button"
-        = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), user_path(@user), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+        = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_admin_user_path(@user), :class => "button"
+        = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), admin_user_path(@user), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
 
 -if not @user.receipts.empty?
   .block
@@ -88,7 +88,7 @@
         - @user.receipts.each do |r|
           %p
             = r.description
-            = link_to 'Delete Receipt', [r.user, r], :method => :delete 
+            = link_to 'Delete Receipt', [:admin, r.user, r], :method => :delete 
           %p
             = image_tag(r.img_url(:thumb))
 

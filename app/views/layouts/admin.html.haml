@@ -10,7 +10,7 @@
     #container
       #header
         %h1
-          %a{:href => "/"} Recipitor
+          %a{:href => "/"} Recipitor - Control Panel
         #user-navigation
           %ul.wat-cf
             -if user_signed_in?
@@ -27,15 +27,14 @@
           %ul.wat-cf
             %li{ :class => (params[:controller] == "home" ? "first active" : "first") }
               = link_to "Home", root_path
+            -if can? :view, User
+              %li{ :class => (params[:controller] == "users" ? "active" : nil) }
+                = link_to "Users", admin_users_path
+              %li{ :class => (params[:controller] == "invitations" ? "active" : nil) }
+                = link_to "Invite", new_user_invitation_path
             -if can? :view, Receipt
               %li{ :class => (params[:controller] == "receipts" ? "active" : nil) }
-                = link_to "My Receipts", receipts_path
-            -if can? :create, Receipt
-              %li{ :class => (params[:controller] == "receipts" ? "active" : nil) }
-                = link_to "New Receipt", new_receipt_path
-            -if can? :admin, :all
-              %li{ :class => (params[:controller] == "receipts" ? "active" : nil) }
-                = link_to "Admin", admin_receipts_path
+                = link_to "Receipts", admin_receipts_path
             
       #wrapper.wat-cf
         .flash

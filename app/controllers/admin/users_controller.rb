@@ -1,4 +1,11 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
+
+  layout "admin"
+
+# only authorized users can access it
+  before_filter :check_admin_ability
+
+#still relevant ?    
   before_filter :authenticate_user!
   load_and_authorize_resource
 
@@ -79,7 +86,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to(users_url) }
+      format.html { redirect_to(admin_users_url) }
       format.xml  { head :ok }
     end
   end

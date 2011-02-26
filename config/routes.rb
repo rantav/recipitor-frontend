@@ -1,5 +1,7 @@
 RecipitorFrontend::Application.routes.draw do
+
   devise_for :users
+  
   devise_scope :user do
       get "/login" => "devise/sessions#new"
   end
@@ -10,20 +12,26 @@ RecipitorFrontend::Application.routes.draw do
   get "home/index"
   root :to => "home#index"
   
-  match 'rcpt/:id/:style/:basename.:extension' => 'receipts#view'
- 
+#  scope :module => "admin" do
+	match '/rcpt/:id/:style/:basename.:extension' => 'receipts#view'
+#  end
+  
   match '/emails' => 'emails#create'
   
-  scope "/admin" do
-    resources :users do
-      resources :receipts
-    end
-    resources :receipts
+  namespace "admin" do
+  #scope "/admin" do
+	resources :users do
+		resources :receipts
+	end
+	resources :receipts
   end
   
   #add url for non admin - will probabaly need a bettr name
-  match '/my/receipts' => 'receipts#mylist'
-  
+  match '/my/receipts' => 'receipts#index'
+  resources :receipts
+  	resources :users do
+		resources :receipts
+	end
   
 
   # The priority is based upon order of creation:
