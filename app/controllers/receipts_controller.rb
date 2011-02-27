@@ -22,7 +22,6 @@ class ReceiptsController < ApplicationController
   # GET /receipts/1.xml
   def show
     @receipt = Receipt.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @receipt }
@@ -55,13 +54,17 @@ class ReceiptsController < ApplicationController
 	logger.debug "current_user is #{current_user.email}"
   end
   
-    # POST /receipts
+  # POST /receipts
   # POST /receipts.xml
+  # POST /receipts.json
   def create
     @user = User.find(params[:user_id])
     @receipt = @user.receipts.create(params[:receipt])
-    render :json => {:pic_path => @receipt.img_url, :name => @receipt.img_file_name}
-    #redirect_to user_path(@user) #TODO(ran): Use this redirect in some cases?
+    respond_to do |format|
+      format.json {render :json => {:pic_path => @receipt.img_url, :name => @receipt.img_file_name}}
+      format.html {redirect_to user_path(@user)}
+      format.xml {redirect_to user_path(@user)}
+    end
   end
 
 end
