@@ -9,8 +9,8 @@ class Admin::ReceiptsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
   
-  # GET /receipts
-  # GET /receipts.xml
+  # GET /admin/receipts
+  # GET /admin/receipts.xml
   def index
     @receipts =  Receipt.paginate :page => params[:page], :per_page => 10
 
@@ -20,8 +20,8 @@ class Admin::ReceiptsController < ApplicationController
     end
   end
 
-  # GET /receipts/1
-  # GET /receipts/1.xml
+  # GET /admin/receipts/1
+  # GET /admin/receipts/1.xml
   def show
     @receipt = Receipt.find(params[:id])
 
@@ -31,13 +31,13 @@ class Admin::ReceiptsController < ApplicationController
     end
   end
 
-  # GET /receipts/1/edit
+  # GET /admin/receipts/1/edit
   def edit
     @receipt = Receipt.find(params[:id])
   end
 
-  # POST /receipts
-  # POST /receipts.xml
+  # POST /admin/receipts
+  # POST /admin/receipts.xml
   def create
     @user = User.find(params[:user_id])
     @receipt = @user.receipts.create(params[:receipt])
@@ -45,8 +45,8 @@ class Admin::ReceiptsController < ApplicationController
     #redirect_to user_path(@user) #TODO(ran): Use this redirect in some cases?
   end
 
-  # PUT /receipts/1
-  # PUT /receipts/1.xml
+  # PUT /admin/receipts/1
+  # PUT /admin/receipts/1.xml
   def update
     @receipt = Receipt.find(params[:id])
 
@@ -61,8 +61,8 @@ class Admin::ReceiptsController < ApplicationController
     end
   end
 
-  # DELETE /receipts/1
-  # DELETE /receipts/1.xml
+  # DELETE /admin/receipts/1
+  # DELETE /admin/receipts/1.xml
   def destroy
     @receipt = Receipt.find(params[:id])
     @receipt.destroy

@@ -9,8 +9,8 @@ class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
 
-  # GET /users
-  # GET /users.xml
+  # GET /admin/users
+  # GET /admin/users.xml
   def index
     @users =  User.paginate :page => params[:page], :per_page => 5
 
@@ -20,8 +20,8 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.xml
+  # GET /admin/users/1
+  # GET /admin/users/1.xml
   def show
     @user = User.find(params[:id])
 
@@ -31,8 +31,8 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # GET /users/new
-  # GET /users/new.xml
+  # GET /admin/users/new
+  # GET /admin/users/new.xml
   def new
     @user = User.new
 
@@ -42,13 +42,13 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
+  # GET /admin/users/1/edit
   def edit
     @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.xml
+  # POST /admin/users
+  # POST /admin/users.xml
   def create
     @user = User.new(params[:user])
 
@@ -63,8 +63,8 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.xml
+  # PUT /admin/users/1
+  # PUT /admin/users/1.xml
   def update
     @user = User.find(params[:id])
 
@@ -79,8 +79,8 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.xml
+  # DELETE /admin/users/1
+  # DELETE /admin/users/1.xml
   def destroy
     @user = User.find(params[:id])
     @user.destroy
