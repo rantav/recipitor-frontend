@@ -70,7 +70,7 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(admin_user_path(@user, :notice => 'User was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
