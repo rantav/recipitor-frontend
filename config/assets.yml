@@ -1,0 +1,19 @@
+package_assets: on
+embed_assets: on
+javascript_compressor: closure
+
+javascripts:
+  all:
+  - public/javascripts/jquery.js
+  - public/javascripts/jquery-ui.js
+  - public/javascripts/jquery.fileupload.js
+  - public/javascripts/jquery.fileupload-ui.js
+  - public/javascripts/rails.js
+  - public/javascripts/application.js
+
+stylesheets:
+  all:
+    - public/stylesheets/web-app-theme/base.css
+    - public/stylesheets/web-app-theme/themes/warehouse/style.css
+    - public/stylesheets/web-app-theme/override.css
+    - public/stylesheets/jquery.fileupload-ui.css

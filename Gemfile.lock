@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/documentcloud/jammit.git
+  revision: 45fd7dd87719b416d34452c555f07c6977f77179
+  specs:
+    jammit (0.6.0)
+      closure-compiler (>= 0.1.0)
+      yui-compressor (>= 0.9.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -37,6 +45,7 @@ GEM
     bcrypt-ruby (2.1.4-java)
     builder (2.1.2)
     cancan (1.5.1)
+    closure-compiler (1.0.0)
     devise (1.1.7)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
@@ -100,6 +109,7 @@ GEM
     web-app-theme (0.6.3)
     will_paginate (3.0.pre2)
     xml-simple (1.0.14)
+    yui-compressor (0.9.4)
 
 PLATFORMS
   java
@@ -108,11 +118,13 @@ PLATFORMS
 DEPENDENCIES
   aws-s3
   cancan
+  closure-compiler
   devise
   devise_invitable (~> 0.3.4)
   haml
   haml-rails
   hpricot
+  jammit!
   jquery-rails (>= 0.2.6)
   paperclip
   rails (= 3.0.4)

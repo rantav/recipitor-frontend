@@ -2,9 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.4'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 if defined?(JRUBY_VERSION)
   gem 'jdbc-sqlite3'
   gem 'activerecord-jdbc-adapter'
@@ -32,6 +29,10 @@ gem 'ruby_parser'
 gem 'web-app-theme'
 
 gem 'jquery-rails', '>= 0.2.6'
+
+# resource managemet (CSS, JS)
+gem "jammit", :git => "git://github.com/documentcloud/jammit.git"
+gem "closure-compiler"
 
 # Use unicorn as the web server
 # gem 'unicorn'
