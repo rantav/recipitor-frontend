@@ -18,7 +18,7 @@
           %th.first Admin
           %th.last &nbsp;
         - @users.each do |user|
-          %tr{:class => cycle("odd", "even")}
+          %tr{:class => cycle("odd", "even"), :id => "user_line_#{user.id}"}
             %td= user.id
             %td= link_to user.email, admin_user_path(user)
             %td= user.created_at
@@ -33,7 +33,7 @@
               = link_to "#{t("web-app-theme.show", :default => "Show")}", admin_user_path(user)
               |
               = link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_admin_user_path(user) |
-              = link_to "#{t("web-app-theme.delete", :default => "Delete")}", admin_user_path(user), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+              = link_to "#{t("web-app-theme.delete", :default => "Delete")}", admin_user_path(user), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :remote => true
       .actions-bar.wat-cf
         .actions
         = will_paginate @users

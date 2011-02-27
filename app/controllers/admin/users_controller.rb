@@ -88,6 +88,7 @@ class Admin::UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(admin_users_url) }
       format.xml  { head :ok }
+      format.js 
     end
   end
 end
