@@ -70,6 +70,7 @@ class Admin::ReceiptsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(admin_receipts_url) }
       format.xml  { head :ok }
+      format.js
     end
   end
 

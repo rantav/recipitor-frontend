@@ -15,7 +15,7 @@
           %th= t("web-app-theme.created_at", :default => "Created at")
           %th.last &nbsp;
         - @receipts.each do |receipt|
-          %tr{:class => cycle("odd", "even")}
+          %tr{:class => cycle("odd", "even"), :id => "receipt_line_#{receipt.id}"}
             %td= receipt.id
             %td= link_to image_tag(receipt.img_url(:thumb)), admin_receipt_path(receipt)
             %td
@@ -27,8 +27,8 @@
             %td.last
               = link_to "#{t("web-app-theme.show", :default => "Show")}", admin_receipt_path(receipt)
               |
-              \#{link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_admin_receipt_path(receipt)} |
-              \#{link_to "#{t("web-app-theme.delete", :default => "Delete")}", admin_receipt_path(receipt), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"}
+              = link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_admin_receipt_path(receipt) |
+              = link_to "#{t("web-app-theme.delete", :default => "Delete")}", admin_receipt_path(receipt), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :remote => true
       .actions-bar.wat-cf
         .actions
         = will_paginate @receipts
