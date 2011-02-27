@@ -52,7 +52,7 @@ class Admin::ReceiptsController < ApplicationController
 
     respond_to do |format|
       if @receipt.update_attributes(params[:receipt])
-        format.html { redirect_to(:admin, @receipt, :notice => 'Receipt was successfully updated.') }
+        format.html { redirect_to(admin_receipt_path(@receipt, :notice => 'Receipt was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

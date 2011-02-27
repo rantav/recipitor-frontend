@@ -37,7 +37,7 @@ class Admin::ReceiptsControllerTest < ActionController::TestCase
 
   test "should update receipt" do
     put :update, :id => @receipt.to_param, :receipt => @receipt.attributes
-    assert_redirected_to admin_receipt_path(assigns(:receipt))
+    assert_redirected_to admin_receipt_path(assigns(:receipt), :notice => "Receipt was successfully updated.")
   end
 
   test "should destroy receipt" do
