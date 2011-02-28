@@ -5,7 +5,7 @@ set -e # exit on any error
 echo jammit...
 heroku jammit:add
 
-echo pushing to origin (github)
+echo "pushing to origin (github)"
 git push origin master 
 
 echo pushing heroku
