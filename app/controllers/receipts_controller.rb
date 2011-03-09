@@ -7,7 +7,7 @@ class ReceiptsController < ApplicationController
   # GET /receipts.xml
   def index
     @user = current_user
-    @receipts =  Receipt.paginate :order => 'id DESC', :per_page => 10, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
+    @receipts =  get_paginated_receipts
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @receipts }
@@ -21,6 +21,26 @@ class ReceiptsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @receipt }
+    end
+  end
+  # GET /receipts/1/edit
+  def edit
+    @receipt = Receipt.find(params[:id])
+  end
+  # PUT /users/1/receipts/1
+  # PUT /users/1/receipts/1.xml
+  def update
+    @receipt = Receipt.find(params[:id])
+    respond_to do |format|
+      if @receipt.update_attributes(params[:receipt])
+        format.html { redirect_to(admin_receipt_path(@receipt, :notice => 'Receipt was successfully updated.')) }
+        format.xml  { head :ok }
+        format.json  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @receipt.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @receipt.errors, :status => :unprocessable_entity }
+      end
     end
   end
 
@@ -43,11 +63,11 @@ class ReceiptsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(receipts_url) }
       format.xml  { head :ok }
+      format.js
     end
   end
   
   def new 
-	logger.debug "current_user is #{current_user.email}"
   end
   
   # POST /receipts
@@ -57,10 +77,19 @@ class ReceiptsController < ApplicationController
     @user = User.find(params[:user_id])
     @receipt = @user.receipts.create(params[:receipt])
     respond_to do |format|
-      format.json {render :json => {:pic_path => @receipt.img_url, :name => @receipt.img_file_name}}
+      format.json { render :json => {
+        :pic_path => @receipt.img_url, 
+        :name => @receipt.img_file_name, 
+        :id => @receipt.id,
+        :authenticity_token => form_authenticity_token}}
       format.html {redirect_to user_path(@user)}
       format.xml {redirect_to user_path(@user)}
     end
   end
 
+  protected
+
+  def get_paginated_receipts
+    @receipts =  Receipt.paginate :order => 'id DESC', :per_page => 10, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
+  end
 end
