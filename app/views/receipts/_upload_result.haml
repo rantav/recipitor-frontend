@@ -19,9 +19,13 @@
             dataType: 'json',
             beforeSubmit: function() {
               $(id + " input.text_field").enable(false).fadeTo("slow", .5);
+              $(id + " input:submit").enable(false);
+              $(id + " .saved").hide();
             },
             success: function() {
               $(id + " input.text_field").enable(true).fadeTo("slow", 1);
+              $(id + " input:submit").enable(true);
+              $(id + " .saved").html("Saved").show("fast");
             }
           })
         };
@@ -31,7 +35,7 @@
           '<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;"/>' +
           '<input name="_method" type="hidden" value="put"/>' +
           '<input name="authenticity_token" type="hidden" value="' + receipt.authenticity_token + '"/></div>' +
-          '<input name="receipt[description]" type="text" class="text_field" style="width:100%"/><br/>' +
+          'Describe the receipt <span class="saved"/><input name="receipt[description]" type="text" class="text_field" style="width:100%"/><br/>' +
           '<a href="' + receipt.pic_path  + '">' + receipt.name + '<\/a><input type="submit" value="save" style="float:right"/></form><\/td>' +
           '<\/tr>');
       }

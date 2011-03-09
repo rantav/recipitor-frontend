@@ -1,1 +1,6 @@
 /* Override here any style defined by web-app-theme */
+.saved {
+  color: green;
+  float: right;
+  display: none;
+}
