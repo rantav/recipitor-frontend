@@ -2,7 +2,8 @@
   .content
     .inner
       - if user_signed_in?
-        %p Hello #{current_user.email}
+        %h2 Add receipts
+        = render :partial => "receipts/upload_form"
       - else
         %p Hello stranger, please <a href="/login">login</a>.
         %p If you don't have a login then we're sorry, we're currently an invite only service; email us are <a href="mailto:register@recipitor.com">register@recipitor.com</a>.
