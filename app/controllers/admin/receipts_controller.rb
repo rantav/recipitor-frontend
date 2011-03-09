@@ -23,4 +23,8 @@ class Admin::ReceiptsController < ReceiptsController
   def get_paginated_receipts
     @receipts =  Receipt.paginate :order => 'id DESC', :per_page => 10, :page => params[:page]
   end
+  
+  def receipt_after_update_path
+    admin_receipt_path(@receipt, :notice => 'Receipt was successfully updated.')
+  end
 end

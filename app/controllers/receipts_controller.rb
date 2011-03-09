@@ -27,13 +27,14 @@ class ReceiptsController < ApplicationController
   def edit
     @receipt = Receipt.find(params[:id])
   end
+
   # PUT /users/1/receipts/1
   # PUT /users/1/receipts/1.xml
   def update
     @receipt = Receipt.find(params[:id])
     respond_to do |format|
       if @receipt.update_attributes(params[:receipt])
-        format.html { redirect_to(admin_receipt_path(@receipt, :notice => 'Receipt was successfully updated.')) }
+        format.html { redirect_to receipt_after_update_path }
         format.xml  { head :ok }
         format.json  { head :ok }
       else
@@ -91,5 +92,9 @@ class ReceiptsController < ApplicationController
 
   def get_paginated_receipts
     @receipts =  Receipt.paginate :order => 'id DESC', :per_page => 10, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
+  end
+  
+  def receipt_after_update_path
+    receipt_path(@receipt, :notice => 'Receipt was successfully updated.')
   end
 end
