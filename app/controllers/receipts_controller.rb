@@ -6,19 +6,15 @@ class ReceiptsController < ApplicationController
   # GET /receipts
   # GET /receipts.xml
   def index
-	logger.debug "going to list all receipts for user #{current_user.email}"
-    # @receipts =  Receipt.paginate :page => params[:page], :per_page => 10
     @user = current_user
-    #@receipts =  Receipt.paginate :page => params[:page], :per_page => 4
-    
-     @receipts =  Receipt.paginate :per_page => 4, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
-
+    @receipts =  Receipt.paginate :per_page => 10, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @receipts }
     end
   end
- # GET /receipts/1
+
+  # GET /receipts/1
   # GET /receipts/1.xml
   def show
     @receipt = Receipt.find(params[:id])
@@ -27,7 +23,7 @@ class ReceiptsController < ApplicationController
       format.xml  { render :xml => @receipt }
     end
   end
-  
+
   def view
     current_user = 'userit' ##TODO(ran): extract user from cookie
     head(:not_found) and return if (receipt = Receipt.find_by_id(params[:id])).nil?

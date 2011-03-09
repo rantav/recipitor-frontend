@@ -1,5 +1,8 @@
 .block#text
   .content
-    %h2 Home
     .inner
-      %p.first Please use the navigation bar above to move around the site.
+      - if user_signed_in?
+        %p Hello #{current_user.email}
+      - else
+        %p Hello stranger, please <a href="/login">login</a>.
+        %p If you don't have a login then we're sorry, we're currently an invite only service; email us are <a href="mailto:register@recipitor.com">register@recipitor.com</a>.
