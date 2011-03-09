@@ -7,7 +7,7 @@ class ReceiptsController < ApplicationController
   # GET /receipts.xml
   def index
     @user = current_user
-    @receipts =  Receipt.paginate :per_page => 10, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
+    @receipts =  Receipt.paginate :order => 'id DESC', :per_page => 10, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @receipts }
