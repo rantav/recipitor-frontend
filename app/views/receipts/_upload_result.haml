@@ -13,8 +13,21 @@
                  '<\/button><\/td><\/tr>');
       },
       buildDownloadRow: function (receipt) {
+        var f = function() {
+          var id = '#rcpt' + receipt.id;
+          $(id).ajaxForm({
+            dataType: 'json',
+            beforeSubmit: function() {
+              $(id + " input.text_field").enable(false).fadeTo("slow", .5);
+            },
+            success: function() {
+              $(id + " input.text_field").enable(true).fadeTo("slow", 1);
+            }
+          })
+        };
+        setTimeout(f, 300);
         return $('<tr><td><img width="100px" height="100px" src="' + receipt.pic_path + '"/><\/td>' + 
-          '<td><form class="receipt_description_form form" method="post" action="/users/#{current_user.id}/receipts/' + receipt.id + '/update.json" accept-charset="UTF-8">' + 
+          '<td><form id="rcpt' + receipt.id + '" class="receipt_description_form form" method="post" action="/receipts/' + receipt.id + '.json" accept-charset="UTF-8">' + 
           '<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;"/>' +
           '<input name="_method" type="hidden" value="put"/>' +
           '<input name="authenticity_token" type="hidden" value="' + receipt.authenticity_token + '"/></div>' +

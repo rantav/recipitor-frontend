@@ -36,7 +36,7 @@ class ReceiptsController < ApplicationController
       if @receipt.update_attributes(params[:receipt])
         format.html { redirect_to receipt_after_update_path }
         format.xml  { head :ok }
-        format.json  { head :ok }
+        format.json  { render :json => {:status => :ok} }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @receipt.errors, :status => :unprocessable_entity }

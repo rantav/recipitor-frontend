@@ -8,6 +8,7 @@ javascripts:
   - public/javascripts/jquery-ui.js
   - public/javascripts/jquery.fileupload.js
   - public/javascripts/jquery.fileupload-ui.js
+  - public/javascripts/jquery.form.js
   - public/javascripts/rails.js
   - public/javascripts/application.js
 
