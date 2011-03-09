@@ -27,13 +27,13 @@
             %li{ :class => (params[:controller] == "home" ? "first active" : "first") }
               = link_to "Home", root_path
             -if can? :view, Receipt
-              %li{ :class => (params[:controller] == "receipts" ? "active" : nil) }
+              %li{ :class => (params[:controller] == "receipts" && params[:action] == "index" ? "active" : nil) }
                 = link_to "My Receipts", receipts_path
             -if can? :create, Receipt
-              %li{ :class => (params[:controller] == "receipts" ? "active" : nil) }
+              %li{ :class => (params[:controller] == "receipts" && params[:action] == "new" ? "active" : nil) }
                 = link_to "New Receipt", new_receipt_path
             -if can? :admin, :all
-              %li{ :class => (params[:controller] == "receipts" ? "active" : nil) }
+              %li{ :class => "last" }
                 = link_to "Admin", admin_receipts_path
             
       #wrapper.wat-cf

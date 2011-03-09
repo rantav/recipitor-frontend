@@ -18,8 +18,6 @@
               %li
                 = link_to t("web-app-theme.logout", :default => "Logout"), '/logout'
             -else
-              -#%li
-                = link_to t("web-app-theme.signup", :default => "Signup"), new_admin_user_registration_path
               %li
                 = link_to t("web-app-theme.login", :default => "Login"), '/login'
         #main-navigation
@@ -27,13 +25,14 @@
             %li{ :class => (params[:controller] == "home" ? "first active" : "first") }
               = link_to "Home", root_path
             -if can? :view, User
-              %li{ :class => (params[:controller] == "users" ? "active" : nil) }
+              %li{ :class => (params[:controller] == "admin/users" ? "active" : nil) }
                 = link_to "Users", admin_users_path
+            -if can? :view, Receipt
+              %li{ :class => (params[:controller] == "admin/receipts" ? "active" : nil) }
+                = link_to "Receipts", admin_receipts_path
+            -if can? :view, User
               %li{ :class => (params[:controller] == "invitations" ? "active" : nil) }
                 = link_to "Invite", new_user_invitation_path
-            -if can? :view, Receipt
-              %li{ :class => (params[:controller] == "receipts" ? "active" : nil) }
-                = link_to "Receipts", admin_receipts_path
             
       #wrapper.wat-cf
         .flash
