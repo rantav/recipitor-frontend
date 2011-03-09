@@ -12,9 +12,15 @@
                  '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
                  '<\/button><\/td><\/tr>');
       },
-      buildDownloadRow: function (file) {
-        return $('<tr><td><img width="100px" height="100px" src="' + file.pic_path + '"/><\/td>' + 
-                     '<td><a href="' + file.pic_path  + '">' + file.name + '<\/a><\/td><\/tr>');
+      buildDownloadRow: function (receipt) {
+        return $('<tr><td><img width="100px" height="100px" src="' + receipt.pic_path + '"/><\/td>' + 
+          '<td><form class="receipt_description_form form" method="post" action="/users/#{current_user.id}/receipts/' + receipt.id + '/update.json" accept-charset="UTF-8">' + 
+          '<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;"/>' +
+          '<input name="_method" type="hidden" value="put"/>' +
+          '<input name="authenticity_token" type="hidden" value="' + receipt.authenticity_token + '"/></div>' +
+          '<input name="receipt[description]" type="text" class="text_field" style="width:100%"/><br/>' +
+          '<a href="' + receipt.pic_path  + '">' + receipt.name + '<\/a><input type="submit" value="save" style="float:right"/></form><\/td>' +
+          '<\/tr>');
       }
     });
   });
