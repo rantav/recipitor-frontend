@@ -1,6 +1,7 @@
 class Receipt < ActiveRecord::Base
-  
+ 
   belongs_to :user
+
   
   has_attached_file :img, 
     :styles => {:thumb => "100x100"},
@@ -11,6 +12,7 @@ class Receipt < ActiveRecord::Base
     :path => PAPERCLIP_PATH,
     :url => PAPERCLIP_URL
 
+  before_post_process :friendly_file_name
   validates_attachment_presence :img
   validates_attachment_content_type :img, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/bmp', 'image/png' ]
   validates_attachment_size :img, :less_than => 2.megabytes
@@ -40,4 +42,34 @@ class Receipt < ActiveRecord::Base
     end
   end
 
+  private
+  def friendly_file_name
+    extension = File.extname(img_file_name).gsub(/^\.+/, '')
+    filename = img_file_name.gsub(/\.#{extension}$/, '')
+      self.img.instance_write(:file_name, "#{friendly_url(filename)}.#{extension}")
+  end
+  
+  def friendly_url(str)
+    # Based on permalink_fu by Rick Olsen
+
+    # Escape str by transliterating to UTF-8 with Iconv
+    s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
+
+    # Downcase string
+    s.downcase!
+
+    # Remove apostrophes so isn't changes to isnt
+    s.gsub!(/'/, '')
+
+    # Replace any non-letter or non-number character with a space
+    s.gsub!(/[^A-Za-z0-9]+/, ' ')
+
+    # Remove spaces from beginning and end of string
+    s.strip!
+
+    # Replace groups of spaces with single hyphen
+    s.gsub!(/\ +/, '-')
+
+    return s
+  end
 end
