@@ -20,7 +20,7 @@
             beforeSubmit: function() {
               $(id + " input.text_field").enable(false).fadeTo("slow", .5);
               $(id + " input:submit").enable(false);
-              $(id + " .saved").hide();
+              $(id + " .saved").html("Saving...").show();
             },
             success: function() {
               $(id + " input.text_field").enable(true).fadeTo("slow", 1);
