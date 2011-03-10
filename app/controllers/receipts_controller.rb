@@ -23,22 +23,19 @@ class ReceiptsController < ApplicationController
       format.xml  { render :xml => @receipt }
     end
   end
-
   # GET /receipts/1/edit
   def edit
     @receipt = Receipt.find(params[:id])
   end
-
-  # PUT /receipts/1
-  # PUT /receipts/1.xml
-  # PUT /receipts/1.json
+  # PUT /users/1/receipts/1
+  # PUT /users/1/receipts/1.xml
   def update
     @receipt = Receipt.find(params[:id])
     respond_to do |format|
       if @receipt.update_attributes(params[:receipt])
-        format.html { redirect_to receipt_after_update_path }
+        format.html { redirect_to(admin_receipt_path(@receipt, :notice => 'Receipt was successfully updated.')) }
         format.xml  { head :ok }
-        format.json  { render :json => {:status => :ok} }
+        format.json  { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @receipt.errors, :status => :unprocessable_entity }
@@ -48,6 +45,7 @@ class ReceiptsController < ApplicationController
   end
 
   def view
+    current_user = 'userit' ##TODO(ran): extract user from cookie
     head(:not_found) and return if (receipt = Receipt.find_by_id(params[:id])).nil?
     head(:forbidden) and return unless receipt.authorized?(current_user)
 
@@ -78,6 +76,10 @@ class ReceiptsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @receipt = @user.receipts.create(params[:receipt])
+#YM: for extracting words using OCR script
+#    logger.info("****\n****\nabout to extract words using ocr #{@receipt.img_url}");
+#    words = %x("/home/ymaman/var/recipitor/dev/frontend/recipitor-frontend/ocr/go" "#{@receipt.img_url}").split("\n")
+#    logger.info("extracted words are #{words} ");
     respond_to do |format|
       format.json { render :json => {
         :pic_path => @receipt.img_url, 
@@ -93,9 +95,5 @@ class ReceiptsController < ApplicationController
 
   def get_paginated_receipts
     @receipts =  Receipt.paginate :order => 'id DESC', :per_page => 10, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
-  end
-  
-  def receipt_after_update_path
-    receipt_path(@receipt, :notice => 'Receipt was successfully updated.')
   end
 end
