@@ -27,7 +27,7 @@
         %b
           = t("activerecord.attributes.receipt.img_updated_at", :default => t("activerecord.labels.img_updated_at", :default => "Img updated at"))
           \:
-        = @receipt.img_updated_at.strftime("%m/%d/%Y %I:%M %p")
+        = @receipt.img_updated_at.localtime.strftime("%m/%d/%Y %I:%M %p")
       %p
         %b
           = t("activerecord.attributes.receipt.description", :default => t("activerecord.labels.description", :default => "Description"))

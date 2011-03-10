@@ -7,10 +7,10 @@ class ReceiptsController < ApplicationController
   # GET /receipts.xml
   def index
     @user = current_user
-    @receipts =  get_paginated_receipts
+    @receipts = get_paginated_receipts
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @receipts }
+      format.xml { render :xml => @receipts }
     end
   end
 
@@ -20,32 +20,34 @@ class ReceiptsController < ApplicationController
     @receipt = Receipt.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @receipt }
+      format.xml { render :xml => @receipt }
     end
   end
+
   # GET /receipts/1/edit
   def edit
     @receipt = Receipt.find(params[:id])
   end
-  # PUT /users/1/receipts/1
-  # PUT /users/1/receipts/1.xml
+
+  # PUT /receipts/1
+  # PUT /receipts/1.xml
+  # PUT /receipts/1.json
   def update
     @receipt = Receipt.find(params[:id])
     respond_to do |format|
       if @receipt.update_attributes(params[:receipt])
-        format.html { redirect_to(admin_receipt_path(@receipt, :notice => 'Receipt was successfully updated.')) }
-        format.xml  { head :ok }
-        format.json  { head :ok }
+        format.html { redirect_to receipt_after_update_path }
+        format.xml { head :ok }
+        format.json { render :json => {:status => :ok} }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @receipt.errors, :status => :unprocessable_entity }
-        format.json  { render :json => @receipt.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @receipt.errors, :status => :unprocessable_entity }
+        format.json { render :json => @receipt.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   def view
-    current_user = 'userit' ##TODO(ran): extract user from cookie
     head(:not_found) and return if (receipt = Receipt.find_by_id(params[:id])).nil?
     head(:forbidden) and return unless receipt.authorized?(current_user)
 
@@ -62,12 +64,12 @@ class ReceiptsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(receipts_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
       format.js
     end
   end
   
-  def new 
+  def new
   end
   
   # POST /receipts
@@ -79,11 +81,11 @@ class ReceiptsController < ApplicationController
 #YM: for extracting words using OCR script
 #    logger.info("****\n****\nabout to extract words using ocr #{@receipt.img_url}");
 #    words = %x("/home/ymaman/var/recipitor/dev/frontend/recipitor-frontend/ocr/go" "#{@receipt.img_url}").split("\n")
-#    logger.info("extracted words are #{words} ");
+#    logger.info("extracted words are #{words} ");    
     respond_to do |format|
       format.json { render :json => {
-        :pic_path => @receipt.img_url, 
-        :name => @receipt.img_file_name, 
+        :pic_path => @receipt.img_url,
+        :name => @receipt.img_file_name,
         :id => @receipt.id,
         :authenticity_token => form_authenticity_token}}
       format.html {redirect_to user_path(@user)}
@@ -94,6 +96,10 @@ class ReceiptsController < ApplicationController
   protected
 
   def get_paginated_receipts
-    @receipts =  Receipt.paginate :order => 'id DESC', :per_page => 10, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
+    @receipts = Receipt.paginate :order => 'id DESC', :per_page => 10, :page => params[:page], :conditions => ["user_id = #{current_user.id}"]
+  end
+  
+  def receipt_after_update_path
+    receipt_path(@receipt, :notice => 'Receipt was successfully updated.')
   end
 end
