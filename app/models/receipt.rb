@@ -1,7 +1,6 @@
 class Receipt < ActiveRecord::Base
  
   belongs_to :user
-
   
   has_attached_file :img, 
     :styles => {:thumb => "100x100"},
@@ -19,8 +18,7 @@ class Receipt < ActiveRecord::Base
 
   # The following authorization related methods were insipred by the good writeup at http://thewebfellas.com/blog/2009/8/29/protecting-your-paperclip-downloads
   def authorized?(user)
-    #TODO(ran): Implement this by user
-    user != :guest
+    user.admin? or self.user == user
   end
 
   def img_url(style = nil, include_updated_timestamp = true)

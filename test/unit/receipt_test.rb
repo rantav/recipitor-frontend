@@ -48,10 +48,24 @@ class ReceiptTest < ActiveSupport::TestCase
 #    assert !receipt.save
 #  end
 
-  test "authorization always passes" do
+  test "authorization fails for new user" do
     receipt = Receipt.new
     user = User.new
-    assert receipt.authorized?(user)
+    assert(!receipt.authorized?(user))
+  end
+  
+  test "authorization passes for admins" do
+    receipt = Receipt.new
+    user = User.new
+    user.admin = true
+    assert(receipt.authorized?(user))
+  end
+  
+  test "authorization passes for owner of the receipt but not admin" do
+    receipt = Receipt.new
+    user = User.new
+    receipt.user = user
+    assert(receipt.authorized?(user))
   end
 
   test "building default img_url" do

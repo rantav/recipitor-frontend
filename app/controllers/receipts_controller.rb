@@ -23,13 +23,15 @@ class ReceiptsController < ApplicationController
       format.xml  { render :xml => @receipt }
     end
   end
+
   # GET /receipts/1/edit
   def edit
     @receipt = Receipt.find(params[:id])
   end
 
-  # PUT /users/1/receipts/1
-  # PUT /users/1/receipts/1.xml
+  # PUT /receipts/1
+  # PUT /receipts/1.xml
+  # PUT /receipts/1.json
   def update
     @receipt = Receipt.find(params[:id])
     respond_to do |format|
@@ -46,7 +48,6 @@ class ReceiptsController < ApplicationController
   end
 
   def view
-    current_user = 'userit' ##TODO(ran): extract user from cookie
     head(:not_found) and return if (receipt = Receipt.find_by_id(params[:id])).nil?
     head(:forbidden) and return unless receipt.authorized?(current_user)
 
