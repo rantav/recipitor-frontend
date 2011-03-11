@@ -6,14 +6,12 @@
     .inner
       %table.table
         %tr
-          %th.first ID
-          %th Image
+          %th.first Image
           %th= t("web-app-theme.created_at", :default => "Created at")
           %th Description
           %th.last &nbsp;
         - @receipts.each do |receipt|
           %tr{:class => cycle("odd", "even"), :id => "receipt_line_#{receipt.id}"}
-            %td= receipt.id
             %td= link_to image_tag(receipt.img_url(:thumb), :height => '100', :width => '100'), receipt_path(receipt)
             %td= receipt.created_at.localtime.strftime("%m/%d/%Y %I:%M %p")
             %td= receipt.description
