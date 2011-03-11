@@ -58,12 +58,14 @@ class ReceiptsController < ApplicationController
     redirect_to(receipt.authenticated_url(style))
   end
   
+  # DELETE /receipts/1
+  # DELETE /receipts/1.xml
+  # DELETE /receipts/1.js
   def destroy
     @receipt = Receipt.find(params[:id])
     @receipt.destroy
-
     respond_to do |format|
-      format.html { redirect_to(receipts_url) }
+      format.html { redirect_to(receipt_after_delete_path) }
       format.xml { head :ok }
       format.js
     end
@@ -101,5 +103,9 @@ class ReceiptsController < ApplicationController
   
   def receipt_after_update_path
     receipt_path(@receipt, :notice => 'Receipt was successfully updated.')
+  end
+  
+  def receipt_after_delete_path
+    receipts_url
   end
 end

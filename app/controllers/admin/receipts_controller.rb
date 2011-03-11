@@ -5,19 +5,6 @@ class Admin::ReceiptsController < ReceiptsController
   # only authorized users can access it
   before_filter :check_admin_ability
 
-
-  # DELETE /admin/receipts/1
-  # DELETE /admin/receipts/1.xml
-  def destroy
-    @receipt = Receipt.find(params[:id])
-    @receipt.destroy
-    respond_to do |format|
-      format.html { redirect_to(admin_receipts_url) }
-      format.xml  { head :ok }
-      format.js
-    end
-  end
-
   protected
 
   def get_paginated_receipts
@@ -26,5 +13,9 @@ class Admin::ReceiptsController < ReceiptsController
   
   def receipt_after_update_path
     admin_receipt_path(@receipt, :notice => 'Receipt was successfully updated.')
+  end
+  
+  def receipt_after_delete_path
+    admin_receipts_url
   end
 end
