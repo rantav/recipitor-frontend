@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :redirect_to_ssl
 
   def redirect_to_ssl
-    redirect_to :protocol => "https://" unless (request.ssl? or !env_production?)
+#    redirect_to :protocol => "https://" unless (request.ssl? or !env_production?)
   end
 
   def env_production?
