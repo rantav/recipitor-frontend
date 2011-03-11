@@ -4,6 +4,8 @@ class Receipt < ActiveRecord::Base
 
   belongs_to :user
   
+  @@default_image = "/images/missing_original.png"
+  
   has_attached_file :img, 
     :styles => {:thumb => "100x100"},
     :storage => PAPERCLIP_STORAGE_MECHANISM,
@@ -11,9 +13,10 @@ class Receipt < ActiveRecord::Base
     :s3_permissions => 'authenticated-read',
     :s3_protocol => 'https',
     :path => PAPERCLIP_PATH,
-    :url => PAPERCLIP_URL
-    #:default_url => '/images/missing_:style.png'
+    :url => PAPERCLIP_URL,
+    :default_url => '/images/missing_:style.png'
 
+  
   before_post_process :friendly_file_name
   validates_attachment_presence :img
   validates_attachment_content_type :img, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/bmp', 'image/png' ]
@@ -29,8 +32,7 @@ class Receipt < ActiveRecord::Base
       url = Paperclip::Interpolations.interpolate('/rcpt/:id/:style/:filename', img, style || img.default_style)
     rescue TypeError => e
       logger.error("ERROR: TypeError: #{e}")
-      # TODO(ran): fix this
-      return "TODO - NOT FOUND"
+      return @@default_image
     end
     include_updated_timestamp && img.updated_at ? [url, img.updated_at].compact.join(url.include?("?") ? "&" : "?") : url
   end

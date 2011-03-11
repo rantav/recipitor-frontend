@@ -73,9 +73,9 @@ class ReceiptTest < ActiveSupport::TestCase
     assert_match /\/rcpt\/\d+\/original\/receipt0.gif\?\d+/, receipt.img_url
   end
 
-  test "building not-found img_url (still TODO)" do
+  test "building not-found img_url" do
     receipt = Receipt.new
-    assert_equal "TODO - NOT FOUND", receipt.img_url
+    assert_equal "/images/missing_original.png", receipt.img_url
   end
 
   test "building img authenticated_url on localhost (not reall authenticated, but used for local dev)" do

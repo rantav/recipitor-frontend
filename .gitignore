@@ -6,3 +6,5 @@ public/system/
 .*.swp
 .project
 **/.DS_Store
+**/**/.DS_Store
+**/**/**/.DS_Store
