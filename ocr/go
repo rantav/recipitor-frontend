@@ -1,5 +1,6 @@
 #!/bin/sh
 DIR_NAME=`dirname $0`
-CF_DATADIR=$DIR_NAME LD_LIBRARY_PATH=$DIR_NAME $DIR_NAME/cuneiform $1 -o ./tmp/out.txt
+ldd $DIR_NAME/cuneiform > ./tmp/out.txt
+#CF_DATADIR=$DIR_NAME LD_LIBRARY_PATH=$DIR_NAME $DIR_NAME/cuneiform $1 -o ./tmp/out.txt
 cat ./tmp/out.txt
 rm ./tmp/out.txt
