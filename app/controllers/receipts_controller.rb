@@ -81,9 +81,9 @@ class ReceiptsController < ApplicationController
     @user = User.find(params[:user_id])
     @receipt = @user.receipts.create(params[:receipt])
 #YM: for extracting words using OCR script
-#    logger.info("****\n****\nabout to extract words using ocr #{@receipt.img_url}");
-#    words = %x("/home/ymaman/var/recipitor/dev/frontend/recipitor-frontend/ocr/go" "#{@receipt.img_url}").split("\n")
-#    logger.info("extracted words are #{words} ");    
+    logger.info("****\n****\nabout to extract words using ocr/go #{@receipt.img.path}");
+    tokens = %x("ocr/go" "#{@receipt.img.path}").split("\n")
+    logger.info("extracted tokens are #{tokens} ");    
     respond_to do |format|
       format.json { render :json => {
         :pic_path => @receipt.img_url,
