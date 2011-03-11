@@ -1,5 +1,7 @@
 class Receipt < ActiveRecord::Base
- 
+
+  require 'iconv'
+
   belongs_to :user
   
   has_attached_file :img, 
@@ -10,6 +12,7 @@ class Receipt < ActiveRecord::Base
     :s3_protocol => 'https',
     :path => PAPERCLIP_PATH,
     :url => PAPERCLIP_URL
+    #:default_url => '/images/missing_:style.png'
 
   before_post_process :friendly_file_name
   validates_attachment_presence :img
