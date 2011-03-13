@@ -33,9 +33,9 @@
             -if can? :view, User
               %li{ :class => (params[:controller] == "invitations" ? "active" : nil) }
                 = link_to "Invite", new_user_invitation_path
-            -if can? :view, Queue
-              %li{ :class => (params[:controller] == "admin/queues" ? "active" : nil) }
-                = link_to "Queues", admin_queues_path
+            -if can? :view, MessageQueue
+              %li{ :class => (params[:controller] == "admin/message_queues" ? "active" : nil) }
+                = link_to "Message Queues", admin_message_queues_path
             
       #wrapper.wat-cf
         .flash

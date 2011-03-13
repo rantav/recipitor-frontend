@@ -1,0 +1,9 @@
+access_key_id: <%= ENV['S3_ACCESS_KEY'] %>
+secret_access_key: <%= ENV['S3_SECRET_KEY'] %>
+server: 'queue.amazonaws.com'
+port: 443
+multi_thread: true
+
+# Queue names
+q_extract_store_name_request: 'extract_store_name_request'
+q_extract_store_name_response: 'extract_store_name_response'

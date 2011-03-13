@@ -1,4 +1,4 @@
-class Admin::QueuesController < ApplicationController
+class Admin::MessageQueuesController < ApplicationController
 
   layout "admin"
 
@@ -7,4 +7,7 @@ class Admin::QueuesController < ApplicationController
   load_and_authorize_resource
   before_filter :check_admin_ability
 
+  def index
+    @queues = MessageQueue.all
+  end
 end

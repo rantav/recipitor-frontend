@@ -1,0 +1,15 @@
+.block#text
+  .content
+    %h2.title Message Queues
+    .inner
+      %table.table
+        %tr
+          %th.first Name
+          %th Size
+          %th.last &nbsp;
+        - @queues.each do |q|
+          %tr{:class => cycle("odd", "even")}
+            %td 
+              %a{:href => q.url} 
+                = q.name
+            %td= q.size
