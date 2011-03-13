@@ -37,6 +37,11 @@ GEM
       activesupport (= 3.0.4)
     activesupport (3.0.4)
     arel (2.0.8)
+    aws (2.4.5)
+      activesupport
+      http_connection
+      uuidtools
+      xml-simple
     aws-s3 (0.6.2)
       builder
       mime-types
@@ -61,6 +66,7 @@ GEM
       railties (~> 3.0)
     hpricot (0.8.3)
     hpricot (0.8.3-java)
+    http_connection (1.4.0)
     i18n (0.5.0)
     jquery-rails (0.2.7)
       rails (~> 3.0)
@@ -104,6 +110,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    uuidtools (2.1.2)
     warden (1.0.3)
       rack (>= 1.0.0)
     web-app-theme (0.6.3)
@@ -116,6 +123,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws
   aws-s3
   cancan
   closure-compiler

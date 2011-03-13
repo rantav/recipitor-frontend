@@ -34,6 +34,9 @@ gem 'jquery-rails', '>= 0.2.6'
 gem "jammit", :git => "git://github.com/documentcloud/jammit.git"
 gem "closure-compiler"
 
+# Amazon Simple Queue Service SQS
+gem 'aws'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
