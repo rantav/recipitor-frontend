@@ -21,6 +21,7 @@ RecipitorFrontend::Application.routes.draw do
       resources :receipts
     end
     resources :receipts
+    resources :queues
   end
 
   #add url for non admin - will probabaly need a bettr name
