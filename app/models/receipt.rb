@@ -22,6 +22,8 @@ class Receipt < ActiveRecord::Base
   validates_attachment_content_type :img, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/bmp', 'image/png' ]
   validates_attachment_size :img, :less_than => 2.megabytes
 
+  after_save :extract_store_name
+
   # The following authorization related methods were insipred by the good writeup at http://thewebfellas.com/blog/2009/8/29/protecting-your-paperclip-downloads
   def authorized?(user)
     user.admin? or self.user == user
@@ -46,6 +48,27 @@ class Receipt < ActiveRecord::Base
   end
 
   private
+
+  # Sends a request to extract a store name.
+  # A request is sent to a message queue to be processed at a later time by the store name service extractor.
+  # The message would look something linke this:
+  # {"receipt":{"created_at":"2011-03-15T10:36:35Z","description":null,"id":127,"img_content_type":"image/gif","img_file_name":"v-model.gif","img_file_size":33875,"img_updated_at":"2011-03-15T10:36:35Z","updated_at":"2011-03-15T10:36:35Z","user_id":1},"url":"https://s3.amazonaws.com/recipitor_receipts_prod/imgs/127/original/v-model.gif?AWSAccessKeyId=AKIAJ77AXDKGDKTJEOMQ&Expires=1300271797&Signature=gahFpALNAc%2Bs3%2Bj5MAdSSBI6nLQ%3D"}
+  # The s3 URL is set to expire in 24h.
+  def extract_store_name
+    q = MessageQueue.new("extract_store_name_request")
+    q.send(build_message_for_ocr)
+  end
+
+  # Builds a json message containing among other things the url of the image that can be used for OCR.
+  # The message is returned as a plain string
+  def build_message_for_ocr
+    json = as_json
+    # add the url
+    url = authenticated_url(:original, (3600 * 24))
+    json["url"] = url
+    json.to_json
+  end
+
   def friendly_file_name
     extension = File.extname(img_file_name).gsub(/^\.+/, '')
     filename = img_file_name.gsub(/\.#{extension}$/, '')

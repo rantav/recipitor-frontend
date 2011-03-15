@@ -7,7 +7,6 @@ class MessageQueue
   attr_accessor :aws_queue
 
   @@properties = YAML.load(ERB.new(File.read(Rails.root.join('config/sqs.yml'))).result)
-  #[MessageQueue.new(@@properties['q_extract_store_name_request']), MessageQueue.new(@@properties['q_extract_store_name_response'])]
 
   # Lists all the currently available message queues
   def self.list
@@ -46,6 +45,7 @@ class MessageQueue
     @aws_queue.url
   end
 
+  # Estimated number of messages in the queue
   def size
     @aws_queue.size
   end
@@ -53,5 +53,19 @@ class MessageQueue
   def visibility
     @aws_queue.visibility
   end
+  
+  # Deletes the queue
+  def delete
+    @aws_queue.delete
+  end
 
+  def send(message)
+    logger.info "Sending message #{message} to #{name}"
+    @aws_queue.push message
+  end
+
+  protected
+  def logger
+    RAILS_DEFAULT_LOGGER
+  end
 end
