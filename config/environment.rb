@@ -12,3 +12,12 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
     html_tag
   end
 end
+
+puts "Starting background processes"
+t = Thread.new {
+  while true
+    puts "XXX thread is still up"
+    sleep 5
+  end
+}
+
