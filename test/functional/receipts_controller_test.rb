@@ -3,11 +3,18 @@ require 'test_helper'
 class ReceiptsControllerTest < ActionController::TestCase
   setup do
     @receipt = receipts(:one)
-    img = fixture_file_upload('files/receipt0.gif', 'image/gif')
-    @receipt.attributes = @receipt.attributes.merge({:img => img})
+    @img = fixture_file_upload('files/receipt0.gif', 'image/gif')
+    @receipt.attributes = @receipt.attributes.merge({:img => @img})
     @user = users(:one)
     @receipt.user = @user
     sign_in User.first
+  end
+
+  test "handle message from store name extractor" do
+    store_name = "store #{rand}"
+    message = "{\"receipt\":{\"id\":2,\"extracted_store_name\":\"#{store_name}\"}}"
+    ReceiptsController.handle_message_from_store_name_extractor message
+    assert_equal store_name, Receipt.find(2).extracted_store_name
   end
 
   test "should get index" do

@@ -10,17 +10,24 @@ class ReceiptsController < ApplicationController
     while true
       begin
         logger.debug "Polling for receipts updates..."
-        message = q.read
-        json JSON.parse(s)
-        id = json['receipt']['id']
-        store_name = json['receipt']['extracted_store_name']
-        receipt = Receipt.find(id)
-        receipt.extracted_store_name = store_name
-        receipt.save
+        handle_message_from_store_name_extractor q.read
       rescue Exception => e 
         logger.error "Exception when reading from extract_store_name_response queue #{e}"
       end
     end
+  end
+
+  def self.handle_message_from_store_name_extractor(message)
+    json = JSON.parse(message)
+    id = json['receipt']['id']
+    store_name = json['receipt']['extracted_store_name']
+    receipt = Receipt.find(id)
+    if receipt.nil?
+      logger.error "No receipt with id #{id}, json message is: #{message}"
+      return
+    end
+    receipt.extracted_store_name = store_name
+    receipt.save
   end
 
   # display the users receipts
