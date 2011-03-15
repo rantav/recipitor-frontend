@@ -13,7 +13,7 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
   end
 end
 
-puts "Starting background processes"
+Rails.logger.info "Starting background processes"
 t = Thread.new {
   ReceiptsController.poll_for_updates
 }
