@@ -1,7 +1,14 @@
 class ReceiptsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  
+ 
+  def self.poll_for_updates
+    while true
+      puts "XXX Polling for receipts updates..."
+      sleep 10
+    end
+  end
+
   # display the users receipts
   # GET /receipts
   # GET /receipts.xml

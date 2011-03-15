@@ -15,9 +15,6 @@ end
 
 puts "Starting background processes"
 t = Thread.new {
-  while true
-    puts "XXX thread is still up"
-    sleep 5
-  end
+  ReceiptsController.poll_for_updates
 }
 
