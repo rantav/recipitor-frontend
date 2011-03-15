@@ -56,4 +56,7 @@ RecipitorFrontend::Application.configure do
   
   # Devise configuration
   config.action_mailer.default_url_options = { :host => 'recipitor.heroku.com' }
+  
+  #Message queues
+  Q_EXTRACT_STORE_NAME_REQUEST = "extract_store_name_request_prod"
 end

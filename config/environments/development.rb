@@ -38,5 +38,8 @@ RecipitorFrontend::Application.configure do
 
   # Devise configuration
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  #Message queues
+  Q_EXTRACT_STORE_NAME_REQUEST = "extract_store_name_request_dev"
 end
 

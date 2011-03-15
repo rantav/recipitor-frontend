@@ -1,5 +1,5 @@
 access_key_id: <%= ENV['S3_ACCESS_KEY'] %>
 secret_access_key: <%= ENV['S3_SECRET_KEY'] %>
-server: 'queue.amazonaws.com'
+server: queue.amazonaws.com
 port: 443
 multi_thread: true

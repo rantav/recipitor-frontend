@@ -4,7 +4,6 @@
 # To list all current queues invoke <tt>MessageQueue.list</tt>
 class MessageQueue
 
-  attr_accessor :aws_queue
 
   @@properties = YAML.load(ERB.new(File.read(Rails.root.join('config/sqs.yml'))).result)
 
@@ -66,6 +65,6 @@ class MessageQueue
 
   protected
   def logger
-    RAILS_DEFAULT_LOGGER
+    Rails.logger
   end
 end

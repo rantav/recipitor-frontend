@@ -55,7 +55,7 @@ class Receipt < ActiveRecord::Base
   # {"receipt":{"created_at":"2011-03-15T10:36:35Z","description":null,"id":127,"img_content_type":"image/gif","img_file_name":"v-model.gif","img_file_size":33875,"img_updated_at":"2011-03-15T10:36:35Z","updated_at":"2011-03-15T10:36:35Z","user_id":1},"url":"https://s3.amazonaws.com/recipitor_receipts_prod/imgs/127/original/v-model.gif?AWSAccessKeyId=AKIAJ77AXDKGDKTJEOMQ&Expires=1300271797&Signature=gahFpALNAc%2Bs3%2Bj5MAdSSBI6nLQ%3D"}
   # The s3 URL is set to expire in 24h.
   def extract_store_name
-    q = MessageQueue.new("extract_store_name_request")
+    q = MessageQueue.new(Q_EXTRACT_STORE_NAME_REQUEST)
     q.send(build_message_for_ocr)
   end
 
