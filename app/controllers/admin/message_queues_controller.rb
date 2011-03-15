@@ -8,6 +8,6 @@ class Admin::MessageQueuesController < ApplicationController
   before_filter :check_admin_ability
 
   def index
-    @queues = MessageQueue.all
+    @queues = MessageQueue.list
   end
 end
