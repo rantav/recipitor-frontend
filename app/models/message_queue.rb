@@ -59,8 +59,23 @@ class MessageQueue
   end
 
   def send(message)
-    logger.info "Sending message #{message} to #{name}"
+    logger.debug "Sending message #{message} to #{name}"
     @aws_queue.push message
+  end
+
+  # blocking read
+  def read
+    logger.debug "Reading from #{name}..."
+    message = nil
+    while message.nil?
+      message = @aws_queue.pop
+      if message.nil?
+        logger.debug "Read a nil message from the queue. Will sleep for 10s"
+        sleep 10
+      end
+    end
+    logger.debug "Read message from the queue #{message}"
+    message
   end
 
   protected

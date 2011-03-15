@@ -2,10 +2,24 @@ class ReceiptsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
  
+  # Polls the queue for incoming messages.
+  # The messages are expected to have:
+  # {"receipt":{"id":128,"extracted_store_name":"The store name"}}
   def self.poll_for_updates
+    q = MessageQueue.new(Q_EXTRACT_STORE_NAME_RESPONSE)
     while true
-      puts "XXX Polling for receipts updates..."
-      sleep 10
+      begin
+        logger.debug "Polling for receipts updates..."
+        message = q.read
+        json JSON.parse(s)
+        id = json['receipt']['id']
+        store_name = json['receipt']['extracted_store_name']
+        receipt = Receipt.find(id)
+        receipt.extracted_store_name = store_name
+        receipt.save
+      rescue Exception => e 
+        logger.error "Exception when reading from extract_store_name_response queue #{e}"
+      end
     end
   end
 

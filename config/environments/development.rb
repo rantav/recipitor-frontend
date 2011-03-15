@@ -41,5 +41,6 @@ RecipitorFrontend::Application.configure do
   
   #Message queues
   Q_EXTRACT_STORE_NAME_REQUEST = "extract_store_name_request_dev"
+  Q_EXTRACT_STORE_NAME_RESPONSE = "extract_store_name_response_dev"
 end
 
