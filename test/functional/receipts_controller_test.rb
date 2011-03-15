@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::ReceiptsControllerTest < ActionController::TestCase
+class ReceiptsControllerTest < ActionController::TestCase
   setup do
     @receipt = receipts(:one)
     img = fixture_file_upload('files/receipt0.gif', 'image/gif')
@@ -36,7 +36,7 @@ class Admin::ReceiptsControllerTest < ActionController::TestCase
 
   test "should update receipt" do
     put :update, :id => @receipt.to_param, :receipt => @receipt.attributes
-    assert_redirected_to admin_receipt_path(assigns(:receipt), :notice => "Receipt was successfully updated.")
+    assert_redirected_to receipt_path(assigns(:receipt), :notice => "Receipt was successfully updated.")
   end
 
   test "should destroy receipt" do
@@ -44,6 +44,6 @@ class Admin::ReceiptsControllerTest < ActionController::TestCase
       delete :destroy, :id => @receipt.to_param
     end
 
-    assert_redirected_to admin_receipts_path
+    assert_redirected_to receipts_path
   end
 end
