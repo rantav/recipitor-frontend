@@ -37,6 +37,9 @@ gem "closure-compiler"
 # Amazon Simple Queue Service SQS
 gem 'aws'
 
+# http://flori.github.com/json/
+gem 'json'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
