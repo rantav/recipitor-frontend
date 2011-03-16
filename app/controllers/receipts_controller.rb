@@ -10,7 +10,7 @@ class ReceiptsController < ApplicationController
     while true
       begin
         logger.debug "Polling for receipts updates..."
-        handle_message_from_store_name_extractor q.read
+        handle_message_from_store_name_extractor q.read.body
       rescue Exception => e 
         logger.error "Exception when reading from extract_store_name_response queue #{e}"
       end
@@ -27,6 +27,7 @@ class ReceiptsController < ApplicationController
       return
     end
     receipt.extracted_store_name = store_name
+    logger.debug "Saving receipt after extracting store name#{receipt.as_json}"
     receipt.save
   end
 
@@ -108,12 +109,6 @@ class ReceiptsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @receipt = @user.receipts.create(params[:receipt])
-#YM: for extracting words using OCR script
-#    logger.info("****\n****\nabout to extract words using ocr/go #{@receipt.img.path}");
-#    tokens = %x("ocr/go" "#{@receipt.img.path}").split("\n")
-#    logger.info("extracted tokens are #{tokens} ");    
-#    @receipt.description=tokens;
-#    @receipt.save;
     respond_to do |format|
       format.json { render :json => {
         :pic_path => @receipt.img_url,

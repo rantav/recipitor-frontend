@@ -1,0 +1,10 @@
+.block
+  .secondary-navigation
+  .content
+    %h2.title Send a message to queue <b>#{@mq.name}</b>
+    .inner
+      I'm not ready yet, sorry...
+      -#= form_for @mq, :url => admin_message_queue_path(@mq), :html => { :class => :form } do |f|
+        .group
+          = f.label :message, Message, :class => :label
+          = f.text_field :message, :class => 'text_field'

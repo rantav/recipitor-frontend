@@ -3,7 +3,8 @@
 # To create a new message queue invoke <tt>MessageQueue.new("my_queue_name")</tt>
 # To list all current queues invoke <tt>MessageQueue.list</tt>
 class MessageQueue
-
+ 
+  attr_accessor :aws_queue
 
   @@properties = YAML.load(ERB.new(File.read(Rails.root.join('config/sqs.yml'))).result)
 
@@ -15,6 +16,14 @@ class MessageQueue
       mqs.push(MessageQueue.new(i))
     end
     mqs
+  end
+
+  def self.find(id)
+    MessageQueue.new(id)
+  end
+
+  def to_s
+    name
   end
 
   # Creates a new MessageQueue instance.
@@ -76,6 +85,12 @@ class MessageQueue
     end
     logger.debug "Read message from the queue #{message}"
     message
+  end
+
+  # Peeks the top of the queue without removing the element.
+  # Note: due to sqs's implementation, the message will not be removed but peeking can cause reordering of the elements in the queue.
+  def peek
+    @aws_queue.receive(0)
   end
 
   protected
