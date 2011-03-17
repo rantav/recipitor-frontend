@@ -23,6 +23,15 @@ class Receipt < ActiveRecord::Base
   validates_attachment_size :img, :less_than => 2.megabytes
 
   after_save :extract_store_name
+  
+  attr_accessor :mq_extract_store_name
+
+  def get_mq_extract_store_name
+    if @mq_extract_store_name.nil? 
+      @mq_extract_store_name = MessageQueue.new(Q_EXTRACT_STORE_NAME_REQUEST)
+    end
+    @mq_extract_store_name
+  end
 
   # The following authorization related methods were insipred by the good writeup at http://thewebfellas.com/blog/2009/8/29/protecting-your-paperclip-downloads
   def authorized?(user)
@@ -66,7 +75,7 @@ class Receipt < ActiveRecord::Base
   # The s3 URL is set to expire in 24h.
   def extract_store_name
     return unless created_at == updated_at # this is a new receipt, first time saved
-    q = MessageQueue.new(Q_EXTRACT_STORE_NAME_REQUEST)
+    q = get_mq_extract_store_name
     q.send(build_message_for_ocr)
   end
 

@@ -1,50 +1,60 @@
 require 'test_helper'
+require 'mocha'
 
 class ReceiptTest < ActiveSupport::TestCase
   
   test "should not save receipt without attachment" do
     receipt = Receipt.new
+    receipt.mq_extract_store_name = stub(:send => true)
     assert !receipt.save
   end
   
   test "should save receipt with attachment" do
     receipt = Receipt.create(:img => fixture_file_upload('files/receipt0.gif', 'image/gif'))
+    receipt.mq_extract_store_name = stub(:send => true)
     assert receipt.save
   end
 
   test "attachment content type image/gif should be ok" do
     receipt = Receipt.create(:img => fixture_file_upload('files/receipt0.gif', 'image/gif'))
+    receipt.mq_extract_store_name = stub(:send => true)
     assert receipt.save
   end
   
   test "attachment content type image/jpg should be ok" do
     receipt = Receipt.create(:img => fixture_file_upload('files/receipt1.jpg', 'image/jpg'))
+    receipt.mq_extract_store_name = stub(:send => true)
     assert receipt.save
   end
   
   test "attachment content type image/jpeg should be ok" do
     receipt = Receipt.create(:img => fixture_file_upload('files/receipt3.jpeg', 'image/jpeg'))
+    receipt.mq_extract_store_name = stub(:send => true)
     assert receipt.save
   end
 
   test "attachment content type image/bmp should be ok" do
     receipt = Receipt.create(:img => fixture_file_upload('files/receipt4.bmp', 'image/bmp'))
+    receipt.mq_extract_store_name = stub(:send => true)
     assert receipt.save
   end
   
   test "attachment content type image/pmg should be ok" do
     receipt = Receipt.create(:img => fixture_file_upload('files/receipt5.png', 'image/png'))
+    receipt.mq_extract_store_name = stub(:send => true)
     assert receipt.save
   end
 
   test "attachment content type text/plain should fail" do
     receipt = Receipt.create(:img => fixture_file_upload('files/receipt6.txt', 'text/plain'))
+    receipt.mq_extract_store_name = stub(:send => true)
     assert !receipt.save
   end
   
   ## This test runs for too long... (57 seconds...)
 #  test "attachment too big should be rejected" do
 #    receipt = Receipt.create(:img => fixture_file_upload('files/large_img.jpg', 'image/jpg'))
+#    receipt.mq_extract_store_name = stub(:send => true)
 #    assert !receipt.save
 #  end
 

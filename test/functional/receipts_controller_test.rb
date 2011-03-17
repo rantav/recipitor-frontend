@@ -5,6 +5,7 @@ class ReceiptsControllerTest < ActionController::TestCase
     @receipt = receipts(:one)
     @img = fixture_file_upload('files/receipt0.gif', 'image/gif')
     @receipt.attributes = @receipt.attributes.merge({:img => @img})
+    @receipt.mq_extract_store_name = stub(:send => true)
     @user = users(:one)
     @receipt.user = @user
     sign_in User.first
@@ -50,7 +51,6 @@ class ReceiptsControllerTest < ActionController::TestCase
     assert_difference('Receipt.count', -1) do
       delete :destroy, :id => @receipt.to_param
     end
-
     assert_redirected_to receipts_path
   end
 end
