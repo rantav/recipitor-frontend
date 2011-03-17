@@ -86,5 +86,11 @@ class ReceiptTest < ActiveSupport::TestCase
   test "building img authenticated_url on s3" do
     #TODO(ran): Think about how to test this...
   end
-  
+ 
+  test "build message for ocr" do
+    receipt = Receipt.new
+    message = receipt.build_message_for_ocr
+    assert_equal "{\"receipt\":{\"created_at\":null,\"description\":null,\"extracted_store_name\":null,\"img_content_type\":null,\"img_file_name\":null,\"img_file_size\":null,\"img_updated_at\":null,\"updated_at\":null,\"user_id\":null,\"url\":\"/images/missing_original.png\"}}", message
+  end
+
 end

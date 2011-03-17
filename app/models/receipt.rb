@@ -47,6 +47,16 @@ class Receipt < ActiveRecord::Base
     end
   end
 
+  # Builds a json message containing among other things the url of the image that can be used for OCR.
+  # The message is returned as a plain string
+  def build_message_for_ocr
+    json = as_json
+    # add the url with a TTL of 24h
+    url = authenticated_url(:original, (3600 * 24))
+    json['receipt']['url'] = url
+    json.to_json
+  end
+
   private
 
   # Sends a request to extract a store name.
@@ -58,16 +68,6 @@ class Receipt < ActiveRecord::Base
     return unless created_at == updated_at # this is a new receipt, first time saved
     q = MessageQueue.new(Q_EXTRACT_STORE_NAME_REQUEST)
     q.send(build_message_for_ocr)
-  end
-
-  # Builds a json message containing among other things the url of the image that can be used for OCR.
-  # The message is returned as a plain string
-  def build_message_for_ocr
-    json = as_json
-    # add the url with a TTL of 24h
-    url = authenticated_url(:original, (3600 * 24))
-    json["url"] = url
-    json.to_json
   end
 
   def friendly_file_name
