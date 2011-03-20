@@ -11,6 +11,21 @@ class Admin::MessageQueuesController < ApplicationController
     @queues = MessageQueue.list
   end
 
+  def show
+    @mq = MessageQueue.find(params[:id])
+  end
+
+  def clear
+    @mq = MessageQueue.find(params[:id])
+    logger.info "Clearing queue #{@mq}"
+    @mq.clear
+    redirect_to admin_message_queue_url
+  end
+
+  def destroy
+    clear
+  end
+
   def edit
     @mq = MessageQueue.find(params[:id])
     render :action => "send"

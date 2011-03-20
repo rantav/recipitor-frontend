@@ -1,0 +1,9 @@
+.block
+  .secondary-navigation
+  .content
+    .inner
+      %p
+        %b Messages:
+        = @mq.size
+      .wat-cf
+        = link_to image_tag("web-app-theme/icons/cross.png", :alt => "Clear") + " Clear", admin_message_queue_path(@mq), :method => "delete", :class => "button"

@@ -67,6 +67,11 @@ class MessageQueue
     @aws_queue.delete
   end
 
+  # Clears the queue (deletes all messages)
+  def clear
+    @aws_queue.clear
+  end
+
   def send(message)
     logger.debug "Sending message #{message} to #{name}"
     @aws_queue.push message

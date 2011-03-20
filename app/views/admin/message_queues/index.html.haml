@@ -10,8 +10,10 @@
           %th.last &nbsp;
         - @queues.each do |q|
           %tr{:class => cycle("odd", "even")}
-            %td= q.name
+            %td= link_to q.name, admin_message_queue_path(q)
             %td= q.size
             %td= q.peek
             %td.last
-              = link_to "Send message", edit_admin_message_queue_path(q) 
+              = link_to "Send", edit_admin_message_queue_path(q)
+              |
+              = link_to "Show", admin_message_queue_path(q)
