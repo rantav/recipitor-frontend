@@ -11,12 +11,48 @@ class ReceiptsControllerTest < ActionController::TestCase
     sign_in User.first
   end
 
-  test "handle message from store name extractor" do
+  test "handle message from store name extractor - one store name" do
     store_name = "store #{rand}"
-    message = "{\"receipt\":{\"id\":2,\"extracted_store_name\":\"#{store_name}\"}}"
+    message = <<MESSAGE
+    {
+      "receipt": {
+        "id": "2",
+        "extracted_store_names": [{
+          "name": "#{store_name}",
+          "distance": 0.2857142857142857 
+        }],
+        "extracted_tokens_list": [] 
+      }
+    }
+MESSAGE
     ReceiptsController.handle_message_from_store_name_extractor message
     assert_equal store_name, Receipt.find(2).extracted_store_name
   end
+
+  test "handle message from store name extractor - two store names" do
+    store_name1 = "store #{rand}"
+    store_name2 = "store #{rand}"
+    message = <<MESSAGE
+    {
+      "receipt": {
+        "id": "2",
+        "extracted_store_names": [
+        {
+          "name": "#{store_name1}",
+          "distance": 0.2857142857142857 
+        },
+        {
+          "name": "#{store_name2}",
+          "distance": 0.2857142857142857 
+        }],
+        "extracted_tokens_list": [] 
+      }
+    }
+MESSAGE
+    ReceiptsController.handle_message_from_store_name_extractor message
+    assert_equal store_name1 + " or " + store_name2, Receipt.find(2).extracted_store_name
+  end
+
 
   test "should get index" do
     get :index

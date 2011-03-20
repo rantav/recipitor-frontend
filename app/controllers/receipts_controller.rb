@@ -20,7 +20,18 @@ class ReceiptsController < ApplicationController
   def self.handle_message_from_store_name_extractor(message)
     json = JSON.parse(message)
     id = json['receipt']['id']
-    store_name = json['receipt']['extracted_store_name']
+    store_names = json['receipt']['extracted_store_names']
+    store_name = ""
+    if store_names.size == 1
+      store_name = store_names[0]["name"]
+    elsif store_names.size > 1
+      for i in (0..(store_names.size - 1))
+        if (i > 0)
+          store_name += " or "
+        end
+        store_name += store_names[i]["name"]
+      end
+    end
     receipt = Receipt.find(id)
     if receipt.nil?
       logger.error "No receipt with id #{id}, json message is: #{message}"
