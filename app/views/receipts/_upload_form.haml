@@ -1,5 +1,5 @@
 = form_for([current_user, current_user.receipts.build], :format => :json, :html => {:multipart => true, :id => "file_upload", :method => "post"}) do |f|
-  = f.file_field :img
+  = file_field_tag "receipt[img]", :multiple => true
   %button Upload
   #div Upload Receipts
 
