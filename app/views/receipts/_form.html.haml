@@ -3,6 +3,10 @@
   = f.text_field :description, :class => 'text_field'
   %span.description Ex: From Whole Foods Market, with that great cheese
 .group
+  = f.label :extracted_store_name, t("activerecord.attributes.receipt.extracted_store_name", :default => "Store"), :class => :label
+  = f.text_field :extracted_store_name, :class => 'text_field'
+  %span.description Ex: Walmart
+.group
   = image_tag @receipt.img_url
 .group.navform.wat-cf
   %button.button{:type => "submit"}

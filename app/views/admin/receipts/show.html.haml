@@ -26,7 +26,7 @@
         %b
           = t("activerecord.attributes.receipt.img_file_size", :default => t("activerecord.labels.img_file_size", :default => "Img file size"))
           \:
-        = @receipt.img_file_size
+        = number_to_human_size @receipt.img_file_size
       %p
         %b
           = t("activerecord.attributes.receipt.img_updated_at", :default => t("activerecord.labels.img_updated_at", :default => "Img updated at"))

@@ -5,29 +5,16 @@
         %b
         = image_tag @receipt.img_url
       %p
-        -if @receipt.user
-          %b User:
-          = @receipt.user.email
-      %p
         %b
-          = t("activerecord.attributes.receipt.img_file_name", :default => t("activerecord.labels.img_file_name", :default => "Img file name"))
-          \:
+          Image details:
         = @receipt.img_file_name
-      %p
-        %b
-          = t("activerecord.attributes.receipt.img_content_type", :default => t("activerecord.labels.img_content_type", :default => "Img content type"))
-          \:
+        \(
         = @receipt.img_content_type
-      %p
-        %b
-          = t("activerecord.attributes.receipt.img_file_size", :default => t("activerecord.labels.img_file_size", :default => "Img file size"))
-          \:
-        = @receipt.img_file_size
-      %p
-        %b
-          = t("activerecord.attributes.receipt.img_updated_at", :default => t("activerecord.labels.img_updated_at", :default => "Img updated at"))
-          \:
+        \,
+        = number_to_human_size @receipt.img_file_size
+        \, last updated at 
         = @receipt.img_updated_at.nil? ? "" : @receipt.img_updated_at.localtime.strftime("%m/%d/%Y %I:%M %p")
+        \)
       %p
         %b
           = t("activerecord.attributes.receipt.description", :default => t("activerecord.labels.description", :default => "Description"))
@@ -35,9 +22,9 @@
         = @receipt.description
       %p
         %b
-          = t("activerecord.attributes.receipt.user_id", :default => t("activerecord.labels.user_id", :default => "User"))
+          = t("activerecord.attributes.receipt.extracted_store_name", :default => t("activerecord.labels.extracted_store_name", :default => "Store"))
           \:
-        = @receipt.user_id
+        = @receipt.extracted_store_name
       .wat-cf
         = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_receipt_path(@receipt), :class => "button"
         = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), receipt_path(@receipt), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
