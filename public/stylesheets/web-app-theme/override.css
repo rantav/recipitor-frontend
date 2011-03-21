@@ -4,3 +4,8 @@
   float: right;
   display: none;
 }
+
+.img_details {
+  text-align: center;
+  color: #999;
+}

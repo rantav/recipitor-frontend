@@ -4,9 +4,7 @@
       %p
         %b
         = image_tag @receipt.img_url
-      %p
-        %b
-          Image details:
+      %p.img_details
         = @receipt.img_file_name
         \(
         = @receipt.img_content_type

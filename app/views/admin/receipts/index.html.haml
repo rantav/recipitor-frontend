@@ -12,18 +12,23 @@
           %th.first ID
           %th Image
           %th User
-          %th= t("web-app-theme.created_at", :default => "Created at")
+          %th Created at
+          %th Store Name
           %th.last &nbsp;
         - @receipts.each do |receipt|
           %tr{:class => cycle("odd", "even"), :id => "receipt_line_#{receipt.id}"}
             %td= receipt.id
-            %td= link_to image_tag(receipt.img_url(:thumb), :height => 100, :width => 100), admin_receipt_path(receipt)
+            %td
+              = link_to image_tag(receipt.img_url(:thumb), :height => 100, :width => 100), admin_receipt_path(receipt)
+              .img_details
+                = number_to_human_size receipt.img_file_size
             %td
               -if receipt.user 
                 =link_to receipt.user.email, [:admin, receipt.user]
               -else
                 No one
             %td= receipt.created_at
+            %td= receipt.extracted_store_name
             %td.last
               = link_to "#{t("web-app-theme.show", :default => "Show")}", admin_receipt_path(receipt)
               |
