@@ -37,9 +37,13 @@ class ReceiptsController < ApplicationController
       logger.error "No receipt with id #{id}, json message is: #{message}"
       return
     end
-    receipt.extracted_store_name = store_name
-    logger.debug "Saving receipt after extracting store name#{receipt.as_json}"
-    receipt.save
+    if (receipt.extracted_store_name.nil?)
+      receipt.extracted_store_name = store_name
+      logger.debug "Saving receipt after extracting store name #{receipt.as_json}"
+      receipt.save
+    else
+      logger.debug "Receipt already has a store name. Will not override it with a new value #{receipt.as_json}"
+    end
   end
 
   # display the users receipts

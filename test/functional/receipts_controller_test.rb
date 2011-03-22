@@ -29,6 +29,23 @@ MESSAGE
     assert_equal store_name, Receipt.find(2).extracted_store_name
   end
 
+  test "handle message from store name extractor - receipt already has a store name" do
+    message = <<MESSAGE
+    {
+      "receipt": {
+        "id": "3",
+        "extracted_store_names": [{
+          "name": "foo",
+          "distance": 0.2857142857142857 
+        }],
+        "extracted_tokens_list": [] 
+      }
+    }
+MESSAGE
+    ReceiptsController.handle_message_from_store_name_extractor message
+    assert_equal "bla", Receipt.find(3).extracted_store_name
+  end
+
   test "handle message from store name extractor - two store names" do
     store_name1 = "store #{rand}"
     store_name2 = "store #{rand}"

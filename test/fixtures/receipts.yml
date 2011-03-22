@@ -14,4 +14,12 @@ two:
   img_file_size: 183097
   img_updated_at: "2011-03-15 17:57:14"
   user_id: 980190962
+
+three:
+  id: 3
+  img_file_name: "receipt0.gif"
+  img_content_type: "image/gif" 
+  img_file_size: 183097
+  img_updated_at: "2011-03-15 17:57:14"
+  user_id: 980190962
   extracted_store_name: "bla"
