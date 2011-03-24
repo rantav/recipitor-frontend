@@ -44,3 +44,4 @@
                 Copyright &copy; #{Time.now.year} Recipitor.
         #sidebar
           = yield :sidebar
+    = render :partial => "layouts/ga" if RAILS_ENV == 'production'

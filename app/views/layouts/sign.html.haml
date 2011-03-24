@@ -8,3 +8,4 @@
     #container
       #box
         = yield
+    = render :partial => "layouts/ga" if RAILS_ENV == 'production'
