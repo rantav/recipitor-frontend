@@ -16,5 +16,5 @@ stylesheets:
   all:
     - public/stylesheets/web-app-theme/base.css
     - public/stylesheets/web-app-theme/themes/warehouse/style.css
-    - public/stylesheets/web-app-theme/override.css
     - public/stylesheets/jquery.fileupload-ui.css
+    - public/stylesheets/web-app-theme/override.css

@@ -9,3 +9,16 @@
   text-align: center;
   color: #999;
 }
+
+.file_upload {
+  width: 250px;
+  height: 100%;
+}
+
+.file_upload p b {
+  vertical-align: middle;
+}
+
+.file_upload p img {
+  float: left;
+}
