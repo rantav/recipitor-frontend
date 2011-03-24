@@ -9,10 +9,10 @@
         - m = @mq.peek
         %p
           %b Message on top ID:
-          = m.id 
+          = m.id unless m.nil?
         %p
           %b Message on top received at:
-          = m.received_at
+          = m.received_at unless m.nil?
         %p{:style => "width: 100%; overflow: hidden"}
           %b Message on top content:
           = m
