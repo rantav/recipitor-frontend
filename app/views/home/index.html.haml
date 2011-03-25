@@ -3,6 +3,8 @@
     .inner
       - if user_signed_in?
         %h2 Add receipts
+        #email_center
+          = render :partial => "sidebar_upload_by_email"
         = render :partial => "receipts/upload_form"
       - else
         %p Hello stranger, please <a href="/login">login</a>.

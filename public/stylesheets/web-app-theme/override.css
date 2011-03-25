@@ -22,3 +22,15 @@
 .file_upload p img {
   float: left;
 }
+
+#email_center {
+  float: right;
+}
+
+
+#email_center .content {
+  background-color: #ffc;
+  padding: 0px 5px 0px 7px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
