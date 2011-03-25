@@ -1,4 +1,8 @@
-%table{ :id => "files" }
+%table{ :id => "files" , :style => "padding-top:1em"}
+  %tr{ :id => "my_receipts_link", :style => "display:none; font-weight:bold; font-size:large; height:50px"}
+    %td 
+      <a href="/receipts/" style="padding:1em">My Receipts</a>
+      &nbsp;
 :javascript
   $(function () {
     $('#file_upload').fileUploadUI({
@@ -13,6 +17,7 @@
                  '<\/button><\/td><\/tr>');
       },
       buildDownloadRow: function (receipt) {
+        $("#my_receipts_link").show().effect("highlight", {}, 3000);
         var f = function() {
           var id = '#rcpt' + receipt.id;
           $(id).ajaxForm({
@@ -30,13 +35,13 @@
           })
         };
         setTimeout(f, 300);
-        return $('<tr><td><img width="100px" height="100px" src="' + receipt.pic_path + '"/><\/td>' + 
+        return $('<tr><td><a href="/receipts/' + receipt.id + '"><img width="100px" height="100px" src="' + receipt.pic_path + '"/></a><\/td>' + 
           '<td><form id="rcpt' + receipt.id + '" class="receipt_description_form form" method="post" action="/receipts/' + receipt.id + '.json" accept-charset="UTF-8">' + 
           '<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;"/>' +
           '<input name="_method" type="hidden" value="put"/>' +
           '<input name="authenticity_token" type="hidden" value="' + receipt.authenticity_token + '"/></div>' +
           'Describe the receipt <span class="saved"/><input name="receipt[description]" type="text" class="text_field" style="width:100%"/><br/>' +
-          '<a href="' + receipt.pic_path  + '">' + receipt.name + '<\/a><input type="submit" value="save" style="float:right"/></form><\/td>' +
+          '<a target="_blank" href="' + receipt.pic_path  + '">' + receipt.name + '<\/a><input type="submit" value="save" style="float:right"/></form><\/td>' +
           '<\/tr>');
       }
     });
