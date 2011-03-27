@@ -2,8 +2,7 @@
   .content
     .inner
       %p
-        %b
-        = image_tag @receipt.img_url
+        = image_tag @receipt.img_url(:medium)
       %p.img_details
         = @receipt.img_file_name
         \(

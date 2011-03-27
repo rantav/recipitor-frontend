@@ -7,7 +7,7 @@ class Receipt < ActiveRecord::Base
   @@default_image = "/images/missing_original.png"
   
   has_attached_file :img, 
-    :styles => {:thumb => "100x100"},
+    :styles => {:thumb => "100x100", :medium => "700x1400"},
     :storage => PAPERCLIP_STORAGE_MECHANISM,
     :s3_credentials => Rails.root.join('config/s3.yml'),
     :s3_permissions => 'authenticated-read',
