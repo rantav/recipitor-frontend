@@ -61,7 +61,7 @@ class Receipt < ActiveRecord::Base
   def build_message_for_ocr
     json = as_json
     # add the url with a TTL of 24h
-    url = authenticated_url(:original, (3600 * 24))
+    url = authenticated_url(:medium, (3600 * 24))
     json['receipt']['url'] = url
     json.to_json
   end
