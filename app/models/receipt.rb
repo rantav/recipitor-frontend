@@ -25,6 +25,11 @@ class Receipt < ActiveRecord::Base
   after_save :extract_store_name
   
   attr_accessor :mq_extract_store_name
+  
+  def extracted_store_name_url
+    chain = StoreChain.find_by_name extracted_store_name
+    chain.nil? ? nil : chain.url
+  end
 
   def get_mq_extract_store_name
     if @mq_extract_store_name.nil? 

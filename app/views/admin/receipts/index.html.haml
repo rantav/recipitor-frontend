@@ -29,7 +29,12 @@
               -else
                 No one
             %td= receipt.created_at
-            %td= receipt.extracted_store_name
+            %td
+              - url = receipt.extracted_store_name_url
+              - if url
+                = link_to receipt.extracted_store_name, url
+              - else
+                = receipt.extracted_store_name
             %td= receipt.extracted_store_name_raw_json
             %td.last
               = link_to "#{t("web-app-theme.show", :default => "Show")}", admin_receipt_path(receipt)

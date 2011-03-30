@@ -21,7 +21,11 @@
         %b
           = t("activerecord.attributes.receipt.extracted_store_name", :default => t("activerecord.labels.extracted_store_name", :default => "Store"))
           \:
-        = @receipt.extracted_store_name
+        - url = @receipt.extracted_store_name_url
+        - if url
+          = link_to @receipt.extracted_store_name, url
+        - else
+          = @receipt.extracted_store_name
       .wat-cf
         = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_receipt_path(@receipt), :class => "button"
         = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), receipt_path(@receipt), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
