@@ -39,6 +39,16 @@
         = @receipt.description
       %p
         %b
+          Store name:
+          \:
+        = @receipt.extracted_store_name
+      %p
+        %b
+          Store name raw json
+          \:
+        = @receipt.extracted_store_name_raw_json
+      %p
+        %b
           = t("activerecord.attributes.receipt.user_id", :default => t("activerecord.labels.user_id", :default => "User"))
           \:
         = @receipt.user_id
