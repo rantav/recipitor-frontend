@@ -33,7 +33,6 @@ class Admin::StoreChainsController < ApplicationController
   # GET /store_chains/new.xml
   def new
     @store_chain = StoreChain.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @store_chain }
@@ -52,7 +51,6 @@ class Admin::StoreChainsController < ApplicationController
 
     respond_to do |format|
       if @store_chain.save
-        logger.info "Rerirecting to #{redirect_to(admin_store_chain_path(@store_chain, :notice => 'Store chain was successfully created.'))}"
         format.html { redirect_to(admin_store_chain_path(@store_chain, :notice => 'Store chain was successfully created.')) }
         format.xml  { render :xml => @store_chain, :status => :created, :location => @store_chain }
       else

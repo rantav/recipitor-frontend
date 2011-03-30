@@ -1,5 +1,13 @@
-%h1 New store_chain
-
-= render 'form'
-
-= link_to 'Back', admin_store_chains_path
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "#{t("web-app-theme.list", :default => "List")}", admin_store_chains_path
+      %li.active= link_to "#{t("web-app-theme.new", :default => "New")}", new_admin_store_chain_path
+  .content
+    %h2.title
+      = t("web-app-theme.new", :default => "New")
+      Store Chain
+    .inner
+      = form_for :store_chain, :url => admin_store_chains_path, :html => { :class => :form } do |f|
+        = render :partial => "form", :locals => {:f => f}
+- content_for :sidebar, render(:partial => 'sidebar')
