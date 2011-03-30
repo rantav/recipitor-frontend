@@ -1,0 +1,28 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "#{t("web-app-theme.list", :default => "List")}", admin_store_chains_path
+  .content
+    %h2.title
+      = t("web-app-theme.all", :default => "All")
+      Store Chanis
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th Name
+          %th URL
+          %th Last Update
+          %th.last &nbsp;
+        - @store_chains.each do |sc|
+          %tr{:class => cycle("odd", "even")}
+            %td= sc.id
+            %td= sc.name
+            %td= link_to sc.url, sc.url
+            %td= sc.updated_at
+            %td.last
+              = link_to "#{t("web-app-theme.show", :default => "Show")}", admin_store_chain_path(sc)
+              |
+              = link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_admin_store_chain_path(sc) |
+              = link_to "#{t("web-app-theme.delete", :default => "Delete")}", admin_store_chain_path(sc), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+- content_for :sidebar, render(:partial => 'sidebar')

@@ -30,6 +30,9 @@
             -if can? :view, Receipt
               %li{ :class => (params[:controller] == "admin/receipts" ? "active" : nil) }
                 = link_to "Receipts", admin_receipts_path
+            -if can? :view, StoreChain
+              %li{ :class => (params[:controller] == "admin/store_chains" ? "active" : nil) }
+                = link_to "Store Chains", admin_store_chains_path
             -if can? :view, User
               %li{ :class => (params[:controller] == "invitations" ? "active" : nil) }
                 = link_to "Invite", new_user_invitation_path
