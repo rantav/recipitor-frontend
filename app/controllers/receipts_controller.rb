@@ -39,6 +39,7 @@ class ReceiptsController < ApplicationController
     end
     if (receipt.extracted_store_name.nil?)
       receipt.extracted_store_name = store_name
+      receipt.extracted_store_name_raw_json = message
       logger.debug "Saving receipt after extracting store name #{receipt.as_json}"
       receipt.save
     else

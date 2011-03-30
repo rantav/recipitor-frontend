@@ -70,6 +70,23 @@ MESSAGE
     assert_equal store_name1 + " or " + store_name2, Receipt.find(2).extracted_store_name
   end
 
+  test "handle message from store name extractor - store raw json" do
+    store_name = "store #{rand}"
+    message = <<MESSAGE
+    {
+      "receipt": {
+        "id": "2",
+        "extracted_store_names": [{
+          "name": "#{store_name}",
+          "distance": 0.2857142857142857 
+        }],
+        "extracted_tokens_list": [] 
+      }
+    }
+MESSAGE
+    ReceiptsController.handle_message_from_store_name_extractor message
+    assert_equal message, Receipt.find(2).extracted_store_name_raw_json
+  end
 
   test "should get index" do
     get :index

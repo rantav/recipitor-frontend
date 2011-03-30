@@ -98,9 +98,13 @@ class ReceiptTest < ActiveSupport::TestCase
   end
  
   test "build message for ocr" do
-    receipt = Receipt.new
+    receipt = Receipt.create(:img => fixture_file_upload('files/receipt0.gif', 'image/gif'))
     message = receipt.build_message_for_ocr
-    assert_equal "{\"receipt\":{\"created_at\":null,\"description\":null,\"extracted_store_name\":null,\"img_content_type\":null,\"img_file_name\":null,\"img_file_size\":null,\"img_updated_at\":null,\"updated_at\":null,\"user_id\":null,\"url\":\"/images/missing_original.png\"}}", message
+    json = JSON.parse(message)
+    id = json['receipt']['id']
+    url = json['receipt']['url']
+    assert_equal receipt.id, id 
+    assert_equal receipt.authenticated_url(:medium, (3600 * 24)), url
   end
 
 end

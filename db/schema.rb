@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110315130728) do
+ActiveRecord::Schema.define(:version => 20110330063038) do
 
   create_table "receipts", :force => true do |t|
     t.datetime "created_at"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20110315130728) do
     t.string   "description"
     t.integer  "user_id"
     t.string   "extracted_store_name"
+    t.string   "extracted_store_name_raw_json"
   end
 
   create_table "users", :force => true do |t|
