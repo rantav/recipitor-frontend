@@ -20,7 +20,7 @@ class Receipt < ActiveRecord::Base
   before_post_process :friendly_file_name
   validates_attachment_presence :img
   validates_attachment_content_type :img, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/bmp', 'image/png' ]
-  validates_attachment_size :img, :less_than => 2.megabytes
+  validates_attachment_size :img, :less_than => 4.megabytes
 
   after_save :extract_store_name
   
