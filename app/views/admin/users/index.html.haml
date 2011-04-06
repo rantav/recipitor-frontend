@@ -16,6 +16,7 @@
           %th= t("web-app-theme.created_at", :default => "Created at")
           %th.first Invitation Token
           %th.first Admin
+          %th.first Tags
           %th.last &nbsp;
         - @users.each do |user|
           %tr{:class => cycle("odd", "even"), :id => "user_line_#{user.id}"}
@@ -29,6 +30,7 @@
                 = user.invitation_sent_at
                 )
             %td= user.admin
+            %td= user.tags
             %td.last
               = link_to "#{t("web-app-theme.show", :default => "Show")}", admin_user_path(user)
               |

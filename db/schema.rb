@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330065059) do
+ActiveRecord::Schema.define(:version => 20110406125602) do
 
   create_table "receipts", :force => true do |t|
     t.datetime "created_at"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20110330065059) do
     t.boolean  "admin"
     t.string   "invitation_token",     :limit => 20
     t.datetime "invitation_sent_at"
+    t.string   "tags"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

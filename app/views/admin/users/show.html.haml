@@ -18,6 +18,11 @@
         = @user.admin
       %p
         %b
+          = t("activerecord.attributes.user.tags", :default => t("activerecord.labels.tags", :default => "Tags"))
+          \:
+        = @user.tags
+      %p
+        %b
           = t("activerecord.attributes.user.invitation_sent_at", :default => t("activerecord.labels.invitation_sent_at", :default => "Invitation sent at"))
           \:
         = @user.invitation_sent_at
